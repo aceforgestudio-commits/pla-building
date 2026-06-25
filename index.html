@@ -7,390 +7,349 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#060610;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:#0a0a1a}
+body{background:#04040e;color:#fff;font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;line-height:1.5}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#04040e}
 ::-webkit-scrollbar-thumb{background:#6C5CE7;border-radius:3px}
 
-.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#6C5CE7,#00CEC9);z-index:999;width:0%;animation:grow-progress linear;animation-timeline:scroll()}
-@keyframes grow-progress{from{width:0%}to{width:100%}}
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#6C5CE7,#00CEC9,#fd79a8);z-index:999;width:0%;animation:grow linear;animation-timeline:scroll()}
+@keyframes grow{from{width:0}to{width:100%}}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,16,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.04)}
-nav .logo{font-size:1.3rem;font-weight:800;letter-spacing:-.5px}
-nav .logo span{background:linear-gradient(135deg,#6C5CE7,#00CEC9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-nav .floor-ind{font-size:.8rem;color:#666;padding:6px 14px;border:1px solid rgba(255,255,255,.08);border-radius:8px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(4,4,14,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.03)}
+.logo{font-size:1.2rem;font-weight:800;letter-spacing:-.5px}
+.logo span{background:linear-gradient(135deg,#6C5CE7,#00CEC9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-floor{font-size:.75rem;color:#555;padding:5px 12px;border:1px solid rgba(255,255,255,.06);border-radius:6px;letter-spacing:.5px}
 
-.landing{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;text-align:center}
-.landing h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-2px;line-height:1.1}
-.landing h1 span{background:linear-gradient(135deg,#6C5CE7,#00CEC9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.landing .tag{color:#666;font-size:1rem;margin:16px 0 40px}
-.scroll-ind{position:absolute;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:8px;color:#555;font-size:.75rem;animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-.scroll-ind .arrow{width:20px;height:20px;border-right:2px solid #555;border-bottom:2px solid #555;transform:rotate(45deg)}
+.landing{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;text-align:center;background:radial-gradient(ellipse at 50% 40%,rgba(108,92,231,.08),transparent 60%)}
+.landing h1{font-size:clamp(2.5rem,7vw,5.5rem);font-weight:800;letter-spacing:-3px;line-height:1;margin-bottom:12px}
+.landing h1 span{background:linear-gradient(135deg,#6C5CE7 0%,#00CEC9 50%,#fd79a8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.landing .tag{color:#555;font-size:clamp(.85rem,1.5vw,1.1rem);max-width:400px;margin:0 auto 48px}
+.landing .enter-line{width:1px;height:60px;background:linear-gradient(180deg,rgba(108,92,231,.6),transparent);animation:pulse-line 2s infinite}
+@keyframes pulse-line{0%,100%{opacity:1;height:60px}50%{opacity:.3;height:40px}}
 
-.floor-section{position:relative;min-height:100vh;padding:100px 0 60px}
-.floor-header{text-align:center;padding:40px 20px 60px;position:relative}
-.floor-header .floor-num{font-size:.75rem;color:#6C5CE7;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
-.floor-header h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-1px}
-.floor-header .floor-line{width:60px;height:3px;background:linear-gradient(90deg,#6C5CE7,#00CEC9);margin:16px auto 0;border-radius:2px}
+.floor-sec{position:relative;padding:80px 0 40px}
+.floor-hdr{text-align:center;padding:60px 20px 50px;position:relative}
+.floor-hdr .fnum{font-size:.65rem;color:#6C5CE7;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;font-weight:600}
+.floor-hdr h2{font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;letter-spacing:-1.5px}
+.floor-hdr .fline{width:50px;height:2px;margin:14px auto 0;border-radius:1px}
 
-.hallway{max-width:1200px;margin:0 auto;padding:0 24px;position:relative}
-.hallway::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,rgba(108,92,231,.15),rgba(108,92,231,.15),transparent);transform:translateX(-50%)}
+.hallway{max-width:1100px;margin:0 auto;padding:0 20px;position:relative}
+.hallway::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.04),rgba(255,255,255,.04),transparent);transform:translateX(-50%)}
 
-.room-row{display:flex;align-items:center;gap:40px;margin-bottom:80px;position:relative}
-.room-row.reverse{flex-direction:row-reverse}
+.room-row{display:flex;align-items:stretch;gap:30px;margin-bottom:50px;min-height:200px}
+.room-row.rev{flex-direction:row-reverse}
+.room-spacer{flex:1}
 
-.room-card{flex:1;max-width:480px;background:linear-gradient(145deg,rgba(18,18,35,.95),rgba(12,12,28,.98));border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:28px;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;opacity:0;transform:translateY(40px);animation:reveal linear;animation-timeline:view();animation-range:entry 0% entry 100%}
-@keyframes reveal{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-.room-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px color-mix(in srgb,var(--accent) 15%,transparent)}
-.room-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .3s}
-.room-card:hover::before{opacity:1}
+.room-card{flex:0 0 420px;background:linear-gradient(160deg,rgba(14,14,30,.97),rgba(8,8,20,.99));border:1px solid rgba(255,255,255,.04);border-radius:16px;padding:0;cursor:pointer;transition:all .5s cubic-bezier(.25,.46,.45,.94);position:relative;overflow:hidden;opacity:0;transform:translateY(30px);animation:rshow linear;animation-timeline:view();animation-range:entry 0% entry 80%}
+@keyframes rshow{to{opacity:1;transform:translateY(0)}}
+.room-card:hover{border-color:var(--ac);transform:translateY(-6px) scale(1.01);box-shadow:0 24px 80px rgba(0,0,0,.6),0 0 60px color-mix(in srgb,var(--ac) 10%,transparent)}
 
-.room-card .room-num{font-size:.7rem;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
-.room-card .room-name{font-size:1.25rem;font-weight:700;margin-bottom:6px}
-.room-card .room-desc{font-size:.82rem;color:#666;line-height:1.5;margin-bottom:16px}
-.room-card .room-status{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:8px;font-size:.72rem;font-weight:600}
-.room-card .room-status.active{background:rgba(16,185,129,.12);color:#10b981}
-.room-card .room-status.pipeline{background:rgba(108,92,231,.12);color:#a78bfa}
-.room-card .room-status.building{background:rgba(243,156,18,.12);color:#f39c12}
-.room-card .room-status .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.room-glass{position:absolute;top:0;left:0;right:0;height:100%;background:linear-gradient(180deg,color-mix(in srgb,var(--ac) 6%,transparent),transparent 40%);pointer-events:none}
 
-.room-agents{display:flex;gap:-8px;margin-top:16px}
-.room-agents .agent-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;border:2px solid #0a0a1a;margin-left:-8px;transition:transform .2s}
-.room-agents .agent-dot:first-child{margin-left:0}
-.room-agents .agent-dot:hover{transform:scale(1.2);z-index:2}
+.room-top{padding:22px 24px 16px;position:relative;z-index:1}
+.room-num{font-size:.6rem;color:#444;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.room-name{font-size:1.15rem;font-weight:700;margin-bottom:4px}
+.room-desc{font-size:.78rem;color:#555;line-height:1.5;margin-bottom:12px}
+.room-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:.65rem;font-weight:700;letter-spacing:.5px}
+.badge-active{background:rgba(16,185,129,.1);color:#10b981}
+.badge-pipeline{background:rgba(108,92,231,.1);color:#a78bfa}
+.badge-building{background:rgba(243,156,18,.1);color:#f39c12}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-.room-center{width:4px;background:linear-gradient(180deg,transparent,var(--accent),transparent);border-radius:2px;flex-shrink:0;height:80px;opacity:.3}
+.room-agents-bar{display:flex;align-items:center;gap:10px;padding:12px 24px 16px;border-top:1px solid rgba(255,255,255,.03);position:relative;z-index:1}
+.agent-ava{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;transition:transform .2s}
+.agent-ava:hover{transform:scale(1.15)}
+.agents-label{font-size:.65rem;color:#444;margin-left:auto}
 
-.elevator-section{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;background:linear-gradient(180deg,#060610,#0c0c20,#060610)}
-.elevator-section .elev-box{width:200px;height:300px;border:2px solid rgba(243,156,18,.3);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;background:rgba(243,156,18,.03)}
-.elevator-section .elev-box::before,.elevator-section .elev-box::after{content:'';position:absolute;top:0;bottom:0;width:50%;border:1px solid rgba(243,156,18,.15);transition:transform .6s cubic-bezier(.4,0,.2,1)}
-.elevator-section .elev-box::before{left:0;border-right:none;transform-origin:left}
-.elevator-section .elev-box::after{right:0;border-left:none;transform-origin:right}
-.elevator-section .elev-box.open::before{transform:translateX(-100%)}
-.elevator-section .elev-box.open::after{transform:translateX(100%)}
-.elevator-section .elev-label{font-size:.7rem;color:#f39c12;letter-spacing:3px;text-transform:uppercase}
-.elevator-section .elev-floor{font-size:2.5rem;font-weight:800;color:#f39c12}
-.elevator-section .elev-hint{font-size:.8rem;color:#666;margin-top:20px}
-.floor-btns{display:flex;gap:10px;margin-top:24px}
-.floor-btns button{padding:10px 20px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.03);color:#aaa;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s}
-.floor-btns button:hover{border-color:#6C5CE7;color:#fff;background:rgba(108,92,231,.15)}
-.floor-btns button.active{background:#6C5CE7;border-color:#6C5CE7;color:#fff}
+.room-center-dot{width:8px;height:8px;border-radius:50%;background:var(--ac);opacity:.2;flex-shrink:0;align-self:center;box-shadow:0 0 12px var(--ac)}
 
-.room-overlay{position:fixed;inset:0;z-index:200;pointer-events:none;opacity:0;transition:opacity .3s}
-.room-overlay.open{pointer-events:all;opacity:1}
-.room-overlay .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px)}
-.room-overlay .panel{position:absolute;right:0;top:0;bottom:0;width:min(600px,90vw);background:linear-gradient(180deg,#0c0c20,#080818);border-left:1px solid rgba(255,255,255,.06);transform:translateX(100%);transition:transform .5s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:32px}
-.room-overlay.open .panel{transform:translateX(0)}
+.elevator{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;background:radial-gradient(ellipse at 50% 50%,rgba(243,156,18,.04),transparent 60%)}
+.elev-doors{width:180px;height:260px;border:1px solid rgba(243,156,18,.2);border-radius:12px;position:relative;overflow:hidden;background:rgba(243,156,18,.02)}
+.door{position:absolute;top:0;bottom:0;width:50%;border:1px solid rgba(243,156,18,.1);transition:transform .8s cubic-bezier(.68,-.55,.27,1.55)}
+.door-l{left:0;border-right:none;transform-origin:left}
+.door-r{right:0;border-left:none;transform-origin:right}
+.elev-doors.open .door-l{transform:translateX(-100%)}
+.elev-doors.open .door-r{transform:translateX(100%)}
+.elev-floor{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.elev-floor .ef{font-size:2rem;font-weight:800;color:#f39c12}
+.elev-floor .el{font-size:.55rem;color:#f39c1280;letter-spacing:3px;text-transform:uppercase}
+.elev-hint{font-size:.75rem;color:#444;margin-top:20px}
+.elev-btns{display:flex;gap:8px;margin-top:16px}
+.elev-btns button{padding:8px 16px;border:1px solid rgba(255,255,255,.07);border-radius:8px;background:rgba(255,255,255,.02);color:#666;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .3s}
+.elev-btns button:hover{border-color:#6C5CE7;color:#fff;background:rgba(108,92,231,.1)}
+.elev-btns button.on{background:#6C5CE7;border-color:#6C5CE7;color:#fff}
 
-.panel .back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(255,255,255,.03);color:#888;font-size:.8rem;cursor:pointer;transition:all .2s;margin-bottom:24px}
-.panel .back-btn:hover{border-color:#6C5CE7;color:#fff}
-.panel .panel-room-name{font-size:1.6rem;font-weight:800;margin-bottom:4px}
-.panel .panel-room-desc{font-size:.85rem;color:#666;margin-bottom:32px;line-height:1.5}
+.overlay{position:fixed;inset:0;z-index:200;pointer-events:none;opacity:0;transition:opacity .35s}
+.overlay.open{pointer-events:all;opacity:1}
+.overlay .bg{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px)}
+.overlay .panel{position:absolute;right:0;top:0;bottom:0;width:min(580px,92vw);background:linear-gradient(180deg,#0a0a1c,#060612);border-left:1px solid rgba(255,255,255,.05);transform:translateX(100%);transition:transform .55s cubic-bezier(.25,.46,.45,.94);overflow-y:auto;padding:28px}
+.overlay.open .panel{transform:translateX(0)}
 
-.agent-desk{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:20px;margin-bottom:16px;transition:border-color .3s}
-.agent-desk:hover{border-color:var(--accent)}
-.agent-desk .desk-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.agent-desk .desk-avatar{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;flex-shrink:0}
-.agent-desk .desk-name{font-size:1rem;font-weight:700}
-.agent-desk .desk-role{font-size:.75rem;color:#666}
-.agent-desk .desk-status{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:10px;font-size:.82rem;color:#bbb}
-.agent-desk .desk-status .dot{width:7px;height:7px;border-radius:50%;background:#10b981;flex-shrink:0;animation:pulse 2s infinite}
-.agent-desk .desk-log{font-size:.73rem;color:#555;line-height:1.7}
-.agent-desk .desk-log div{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.p-back{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(255,255,255,.02);color:#666;font-size:.75rem;cursor:pointer;transition:all .2s;margin-bottom:20px}
+.p-back:hover{border-color:#6C5CE7;color:#fff}
+.p-name{font-size:1.5rem;font-weight:800;margin-bottom:4px}
+.p-desc{font-size:.82rem;color:#555;margin-bottom:28px;line-height:1.6}
 
-footer{text-align:center;padding:80px 20px;color:#333;font-size:.8rem}
+.desk{background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.04);border-radius:14px;padding:18px;margin-bottom:14px;transition:all .3s;position:relative;overflow:hidden}
+.desk:hover{border-color:var(--ac);background:rgba(255,255,255,.025)}
+.desk::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),transparent);opacity:0;transition:opacity .3s}
+.desk:hover::before{opacity:1}
+.desk-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.desk-av{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;flex-shrink:0}
+.desk-nm{font-size:.95rem;font-weight:700}
+.desk-rl{font-size:.7rem;color:#555}
+.desk-st{display:flex;align-items:center;gap:7px;padding:7px 10px;background:rgba(255,255,255,.025);border-radius:7px;margin-bottom:8px;font-size:.78rem;color:#999}
+.desk-st .dot{width:6px;height:6px;border-radius:50%;background:#10b981;flex-shrink:0;animation:pulse 2s infinite}
+.desk-lg{font-size:.7rem;color:#444;line-height:1.7}
+.desk-lg div{padding:2px 0;border-bottom:1px solid rgba(255,255,255,.02)}
+
+footer{text-align:center;padding:60px 20px 40px;color:#222;font-size:.75rem}
 footer a{color:#6C5CE7;text-decoration:none}
 </style>
 </head>
 <body>
-
 <div class="progress"></div>
-
 <nav>
   <div class="logo"><span>My Pla</span> Building</div>
-  <div class="floor-ind" id="floorInd">Floor 1</div>
+  <div class="nav-floor" id="nf">Floor 1</div>
 </nav>
 
 <section class="landing">
-  <h1><span>My Pla</span><br>The Building</h1>
-  <div class="tag">An AI-powered agency. Infinite floors. Infinite agents.</div>
-  <div class="scroll-ind"><span>Scroll to enter</span><div class="arrow"></div></div>
+  <h1><span>My Pla</span></h1>
+  <div class="tag">An AI-powered agency. Infinite floors. Infinite agents. Walk through and see every team at work.</div>
+  <div class="enter-line"></div>
 </section>
 
-<section class="floor-section" id="floor1" data-floor="1">
-  <div class="floor-header">
-    <div class="floor-num">Floor 1</div>
+<section class="floor-sec" id="f1" data-f="1">
+  <div class="floor-hdr">
+    <div class="fnum">Floor 1</div>
     <h2>Websites</h2>
-    <div class="floor-line"></div>
+    <div class="fline" style="background:linear-gradient(90deg,#6C5CE7,#a78bfa)"></div>
   </div>
-  <div class="hallway" id="hallway1"></div>
+  <div class="hallway" id="h1"></div>
 </section>
 
-<div class="elevator-section" id="elevator1">
-  <div class="elev-box" id="elevBox1">
-    <div class="elev-label">Elevator</div>
-    <div class="elev-floor">F1</div>
+<div class="elevator" id="el1">
+  <div class="elev-doors" id="ed1">
+    <div class="door door-l"></div><div class="door door-r"></div>
+    <div class="elev-floor"><div class="ef">1</div><div class="el">Websites</div></div>
   </div>
   <div class="elev-hint">Choose a floor</div>
-  <div class="floor-btns">
-    <button class="active" onclick="scrollToFloor(1)">F1 Websites</button>
-    <button onclick="scrollToFloor(2)">F2 Apps</button>
-    <button onclick="scrollToFloor(3)">F3 Content</button>
-    <button onclick="scrollToFloor(4)">F4 Marketing</button>
+  <div class="elev-btns">
+    <button class="on" onclick="goFloor(1)">F1</button>
+    <button onclick="goFloor(2)">F2</button>
+    <button onclick="goFloor(3)">F3</button>
+    <button onclick="goFloor(4)">F4</button>
   </div>
 </div>
 
-<section class="floor-section" id="floor2" data-floor="2">
-  <div class="floor-header">
-    <div class="floor-num">Floor 2</div>
+<section class="floor-sec" id="f2" data-f="2">
+  <div class="floor-hdr">
+    <div class="fnum">Floor 2</div>
     <h2>Apps & SaaS</h2>
-    <div class="floor-line" style="background:linear-gradient(90deg,#00CEC9,#6C5CE7)"></div>
+    <div class="fline" style="background:linear-gradient(90deg,#00CEC9,#55efc4)"></div>
   </div>
-  <div class="hallway" id="hallway2"></div>
+  <div class="hallway" id="h2"></div>
 </section>
 
-<div class="elevator-section" id="elevator2">
-  <div class="elev-box">
-    <div class="elev-label">Elevator</div>
-    <div class="elev-floor">F2</div>
+<div class="elevator" id="el2">
+  <div class="elev-doors">
+    <div class="door door-l"></div><div class="door door-r"></div>
+    <div class="elev-floor"><div class="ef">2</div><div class="el">Apps & SaaS</div></div>
   </div>
   <div class="elev-hint">Choose a floor</div>
-  <div class="floor-btns">
-    <button onclick="scrollToFloor(1)">F1 Websites</button>
-    <button class="active" onclick="scrollToFloor(2)">F2 Apps</button>
-    <button onclick="scrollToFloor(3)">F3 Content</button>
-    <button onclick="scrollToFloor(4)">F4 Marketing</button>
+  <div class="elev-btns">
+    <button onclick="goFloor(1)">F1</button>
+    <button class="on" onclick="goFloor(2)">F2</button>
+    <button onclick="goFloor(3)">F3</button>
+    <button onclick="goFloor(4)">F4</button>
   </div>
 </div>
 
-<section class="floor-section" id="floor3" data-floor="3">
-  <div class="floor-header">
-    <div class="floor-num">Floor 3</div>
+<section class="floor-sec" id="f3" data-f="3">
+  <div class="floor-hdr">
+    <div class="fnum">Floor 3</div>
     <h2>Content Creation</h2>
-    <div class="floor-line" style="background:linear-gradient(90deg,#fd79a8,#e84393)"></div>
+    <div class="fline" style="background:linear-gradient(90deg,#fd79a8,#e84393)"></div>
   </div>
-  <div class="hallway" id="hallway3"></div>
+  <div class="hallway" id="h3"></div>
 </section>
 
-<div class="elevator-section" id="elevator3">
-  <div class="elev-box">
-    <div class="elev-label">Elevator</div>
-    <div class="elev-floor">F3</div>
+<div class="elevator" id="el3">
+  <div class="elev-doors">
+    <div class="door door-l"></div><div class="door door-r"></div>
+    <div class="elev-floor"><div class="ef">3</div><div class="el">Content</div></div>
   </div>
   <div class="elev-hint">Choose a floor</div>
-  <div class="floor-btns">
-    <button onclick="scrollToFloor(1)">F1 Websites</button>
-    <button onclick="scrollToFloor(2)">F2 Apps</button>
-    <button class="active" onclick="scrollToFloor(3)">F3 Content</button>
-    <button onclick="scrollToFloor(4)">F4 Marketing</button>
+  <div class="elev-btns">
+    <button onclick="goFloor(1)">F1</button>
+    <button onclick="goFloor(2)">F2</button>
+    <button class="on" onclick="goFloor(3)">F3</button>
+    <button onclick="goFloor(4)">F4</button>
   </div>
 </div>
 
-<section class="floor-section" id="floor4" data-floor="4">
-  <div class="floor-header">
-    <div class="floor-num">Floor 4</div>
+<section class="floor-sec" id="f4" data-f="4">
+  <div class="floor-hdr">
+    <div class="fnum">Floor 4</div>
     <h2>Marketing</h2>
-    <div class="floor-line" style="background:linear-gradient(90deg,#d63031,#e17055)"></div>
+    <div class="fline" style="background:linear-gradient(90deg,#d63031,#e17055)"></div>
   </div>
-  <div class="hallway" id="hallway4"></div>
+  <div class="hallway" id="h4"></div>
 </section>
 
-<footer>
-  <p>Built by Asjid &mdash; 17 years old from Pakistan</p>
-  <p style="margin-top:8px"><a href="https://github.com/aceforgestudio-commits">My Pla</a> &copy; 2026</p>
-</footer>
+<footer>Built by Asjid &mdash; 17 from Pakistan &nbsp;|&nbsp; <a href="#">My Pla</a> &copy; 2026</footer>
 
-<div class="room-overlay" id="overlay">
-  <div class="backdrop" onclick="closeRoom()"></div>
-  <div class="panel" id="panel"></div>
+<div class="overlay" id="ov">
+  <div class="bg" onclick="closeR()"></div>
+  <div class="panel" id="pn"></div>
 </div>
 
 <script>
-const FLOORS=[
-{name:"Websites",accent:"#6C5CE7",rooms:[
-{id:"custom",name:"Custom Websites",num:1,status:"active",statusLabel:"Active",
-desc:"Full custom websites built from scratch. Three.js scenes, GSAP animations, custom SVG. Every pixel intentional.",
-agents:[
-{name:"Builder",role:"Web Developer",color:"#e17055",icon:"B",status:"Building client site...",log:["Brand identity done","Three.js scene complete","Deployed to GitHub Pages","Performance score: 98","Client approved"]},
-{name:"Sentinel",role:"QA Reviewer",color:"#00b894",icon:"Q",status:"Reviewing code...",log:["HTML: 98/100","Accessibility: 92/100","Responsiveness: 96/100","APPROVED","Deployed to production"]},
-{name:"Scout",role:"Lead Prospector",color:"#f39c12",icon:"S",status:"Finding new clients...",log:["Found 3 businesses","Website quality: poor","Lead scored 87/100","Qualified","Added to pipeline"]}]},
-{id:"templates",name:"Productized Templates",num:2,status:"pipeline",statusLabel:"Pipeline",
-desc:"Pre-built website templates for specific industries. Fast delivery, consistent quality, lower price point.",
-agents:[
-{name:"Builder",role:"Web Developer",color:"#e17055",icon:"B",status:"Designing template...",log:["Researching niche","Wireframe done","First draft ready","Testing breakpoints","Almost done"]},
-{name:"Echo",role:"Outreach Specialist",color:"#6C5CE7",icon:"E",status:"Warming leads...",log:["Tone: Professional","Draft crafted","Sent to 5 leads","2 replies positive","Meeting scheduled"]}]},
-{id:"maintenance",name:"Maintenance Retainer",num:3,status:"active",statusLabel:"Active",
-desc:"Monthly website maintenance. Updates, security, performance monitoring. Recurring revenue.",
-agents:[
-{name:"Sentinel",role:"QA Reviewer",color:"#00b894",icon:"Q",status:"Monitoring sites...",log:["All 4 sites up","Security scan clean","Updates applied","Uptime 99.9%","Report sent"]},
-{name:"Echo",role:"Outreach Specialist",color:"#6C5CE7",icon:"E",status:"Upselling clients...",log:["Client A: renewal","Client B: add SEO","Pitch sent","Waiting reply","Follow-up tomorrow"]}]},
-{id:"whitelabel",name:"White Label Model",num:4,status:"pipeline",statusLabel:"Pipeline",
-desc:"Build websites for other agencies under their brand. Volume play, steady work.",
-agents:[
-{name:"Vector",role:"Client Acquisition",color:"#00CEC9",icon:"V",status:"Pitching agencies...",log:["3 agencies contacted","Demo scheduled","Proposal sent","Negotiating terms","First deal close"]},
-{name:"Builder",role:"Web Developer",color:"#e17055",icon:"B",status:"Preparing samples...",log:["Sample site 1 done","Sample site 2 done","Case study written","Portfolio ready","Send it"]}]},
-{id:"conversion",name:"Conversion Bridge",num:5,status:"pipeline",statusLabel:"Pipeline",
-desc:"Landing pages optimized for conversion. A/B testing, analytics, CRO.",
-agents:[
-{name:"Scout",role:"Lead Prospector",color:"#f39c12",icon:"S",status:"Researching market...",log:["Analyzing competitors","Landing page audit","CRO opportunities","Found 12 leads","Scored 82/100"]},
-{name:"Echo",role:"Outreach Specialist",color:"#6C5CE7",icon:"E",status:"Outreaching...",log:["Message crafted","Tone: data-driven","Sent to 8 leads","3 opened","1 replied"]}]},
-{id:"traffic",name:"Traffic & Pay",num:6,status:"pipeline",statusLabel:"Pipeline",
-desc:"Paid traffic management. Google Ads, Meta Ads, retargeting. Drive visitors to converted sites.",
-agents:[
-{name:"Command AI",role:"Strategist",color:"#d63031",icon:"C",status:"Planning campaigns...",log:["Budget allocated","Audience defined","Ad creatives ready","Campaign structure","Launch prep"]}]},
-{id:"vertical",name:"Vertical Specific",num:7,status:"active",statusLabel:"Active",
-desc:"Websites for specific industries. Medical, legal, restaurants, real estate. Domain expertise.",
-agents:[
-{name:"Scout",role:"Lead Prospector",color:"#f39c12",icon:"S",status:"Scanning verticals...",log:["Medical clinics found","Legal firms found","Restaurant leads","Scored 90/100","Pipeline growing"]},
-{name:"Builder",role:"Web Developer",color:"#e17055",icon:"B",status:"Building vertical...",log:["Medical template done","Legal template 70%","Customizing for client","Deployed preview","Reviewing"]},
-{name:"Sentinel",role:"QA Reviewer",color:"#00b894",icon:"Q",status:"Checking compliance...",log:["HIPAA check passed","ADA compliance 95%","Mobile score 97","Speed optimized","Approved"]}]
-}]},
-{name:"Apps & SaaS",accent:"#00CEC9",rooms:[
-{id:"freemium",name:"Freemium Tools",num:1,status:"pipeline",statusLabel:"Pipeline",
-desc:"Free tools that generate leads. SEO checkers, website grader, content analyzer. Upsell to paid.",
-agents:[
-{name:"WebApp AI",role:"Full-Stack Dev",color:"#55efc4",icon:"W",status:"Building SEO tool...",log:["MVP complete","Landing page done","Pricing page live","Beta invite sent","Collecting feedback"]}]},
-{id:"saas",name:"Micro SaaS",num:2,status:"pipeline",statusLabel:"Pipeline",
-desc:"Small, focused SaaS products. One problem, one solution, monthly revenue.",
-agents:[
-{name:"SaaS AI",role:"Product Builder",color:"#74b9ff",icon:"S",status:"Invoice generator...",log:["Stripe integration","Auth flow complete","Beta launched","First paying user","Feature roadmap"]}]},
-{id:"vertical2",name:"Vertical Specific",num:3,status:"pipeline",statusLabel:"Pipeline",
-desc:"Apps built for specific industries. Medical scheduling, legal CRM, restaurant ordering.",
-agents:[
-{name:"WebApp AI",role:"Full-Stack Dev",color:"#55efc4",icon:"W",status:"Researching vertical...",log:["Market analysis","Competitor review","Feature list v1","Tech stack chosen","Starting build"]}]},
-{id:"aas",name:"Apps as a Service",num:4,status:"pipeline",statusLabel:"Pipeline",
-desc:"Custom app development for clients. Web apps, dashboards, internal tools.",
-agents:[
-{name:"Builder",role:"Web Developer",color:"#e17055",icon:"B",status:"Dashboard prototype...",log:["Wireframes done","React scaffold","API endpoints","Database schema","First screen"]}]},
-{id:"marketplace",name:"Marketplace",num:5,status:"pipeline",statusLabel:"Pipeline",
-desc:"Multi-sided marketplace platforms. Connect buyers and sellers. Transaction fees.",
-agents:[
-{name:"Marketplace AI",role:"Platform Builder",color:"#ffeaa7",icon:"M",status:"Platform design...",log:["User flows mapped","Payment split","Search system","Onboarding","First seller"]}]},
-{id:"consumer",name:"Consumer Pillar",num:6,status:"pipeline",statusLabel:"Pipeline",
-desc:"App Store / Play Store apps. Consumer-facing mobile applications.",
-agents:[
-{name:"Growth AI",role:"Growth Hacker",color:"#00cec9",icon:"G",status:"Market research...",log:["App store analysis","ASO keywords","Competitor gaps","Monetization plan","Ready to build"]}]},
-{id:"webapps",name:"WebApps",num:7,status:"active",statusLabel:"Active",
-desc:"Full-stack web applications. CRMs, dashboards, admin panels, client portals.",
-agents:[
-{name:"WebApp AI",role:"Full-Stack Dev",color:"#55efc4",icon:"W",status:"Building CRM...",log:["React scaffold","API endpoints","DB schema","UI components","Testing"]},
-{name:"Sentinel",role:"QA Reviewer",color:"#00b894",icon:"Q",status:"Reviewing...",log:["Unit tests pass","Integration OK","Performance good","Security scan","Approved"]}]
-}]},
-{name:"Content Creation",accent:"#fd79a8",rooms:[
-{id:"dfy",name:"Done For You",num:1,status:"active",statusLabel:"Active",
-desc:"Full content creation service. Posts, reels, blogs, newsletters. We do everything.",
-agents:[
-{name:"Content AI",role:"Content Creator",color:"#fd79a8",icon:"C",status:"Writing posts...",log:["SEO research done","Draft 1 complete","Adding visuals","Optimizing","Scheduler set"]},
-{name:"Retainer AI",role:"Account Manager",color:"#fab1a0",icon:"R",status:"Managing clients...",log:["Client A: 12 posts","Client B: 2 reels","Client C: on track","Reports sent","Renewed"]}]},
-{id:"packages",name:"Productized Packages",num:2,status:"active",statusLabel:"Active",
-desc:"Fixed price, fixed deliverable content packages. 4 posts/mo, 8 posts/mo, etc.",
-agents:[
-{name:"Package AI",role:"Productizer",color:"#e84393",icon:"P",status:"Starter Pack...",log:["Package designed","Pricing set","Templates ready","Sales page live","First buyer"]},
-{name:"Echo",role:"Outreach Specialist",color:"#6C5CE7",icon:"E",status:"Selling packages...",log:["Lead list ready","Message crafted","Sent to 20 leads","5 interested","2 closing"]}]},
-{id:"retainer",name:"Content Retainer",num:3,status:"active",statusLabel:"Active",
-desc:"Monthly recurring content. Long-term partnerships. Steady output, steady revenue.",
-agents:[
-{name:"Retainer AI",role:"Account Manager",color:"#fab1a0",icon:"R",status:"3 clients active...",log:["Client A: delivered","Client B: on track","Client C: needs help","Monthly review","All good"]}]},
-{id:"wlcontent",name:"White Label",num:4,status:"pipeline",statusLabel:"Pipeline",
-desc:"Agencies resell your content team. Volume play, recurring revenue, low touch.",
-agents:[
-{name:"Vector",role:"Client Acquisition",color:"#00CEC9",icon:"V",status:"Pitching agencies...",log:["5 agencies contacted","Demo done","Proposal sent","Negotiating","First deal"]}]},
-{id:"verticalcontent",name:"Vertical Specific",num:5,status:"pipeline",statusLabel:"Pipeline",
-desc:"Content for one niche only. Medical content, legal blogs, restaurant social media.",
-agents:[
-{name:"Content AI",role:"Content Creator",color:"#fd79a8",icon:"C",status:"Medical content...",log:["Research complete","Tone: professional","Draft 1 done","Medical review","Approved"]},
-{name:"Scout",role:"Lead Prospector",color:"#f39c12",icon:"S",status:"Finding verticals...",log:["Medical practices","Law firms","Dental clinics","Scored 88/100","Pipeline"]}]
-}]},
-{name:"Marketing",accent:"#d63031",rooms:[
-{id:"cmd",name:"Marketing Command",num:1,status:"active",statusLabel:"Active",
-desc:"Central strategy hub. Plans campaigns, allocates budget, tracks performance across all floors.",
-agents:[
-{name:"Command AI",role:"Strategist",color:"#d63031",icon:"C",status:"200+ accounts...",log:["IG: 45 active","TW: 80 posting","LI: 30 engaging","Strategy updated","Campaign live"]}]},
-{id:"farm",name:"Account Farm",num:2,status:"active",statusLabel:"Active",
-desc:"Hundreds of social media accounts. Automated posting, engagement, growth. The engine room.",
-agents:[
-{name:"Farm AI",role:"Operator",color:"#e17055",icon:"A",status:"50 IG accounts...",log:["Batch created","Engagement 4.2%","No flags","Content scheduled","Growth +12%"]}]},
-{id:"growth",name:"Growth Engine",num:3,status:"active",statusLabel:"Active",
-desc:"Funnels, A/B testing, conversion optimization. Data-driven growth for every floor.",
-agents:[
-{name:"Growth AI",role:"Growth Hacker",color:"#00cec9",icon:"G",status:"Funnel #7...",log:["A/B running","Variant B: +23%","Rolling out","CPL: $2.10","ROI: 340%"]}]},
-{id:"outreach",name:"Outreach Hub",num:4,status:"active",statusLabel:"Active",
-desc:"Cold email, DM outreach, lead nurturing. The communication engine for all floors.",
-agents:[
-{name:"Echo",role:"Outreach Specialist",color:"#6C5CE7",icon:"E",status:"Warming leads...",log:["Batch sent: 50","Open rate: 42%","Replies: 8","Positive: 5","Meetings: 2"]},
-{name:"Scout",role:"Lead Prospector",color:"#f39c12",icon:"S",status:"Building lists...",log:["New leads: 30","Verified: 28","Scored: 85+","Added to CRM","Ready to warm"]}]},
-{id:"brand",name:"Brand & Image",num:5,status:"pipeline",statusLabel:"Pipeline",
-desc:"Company branding, social media presence, reputation management. How My Pla looks to the world.",
-agents:[
-{name:"Content AI",role:"Content Creator",color:"#fd79a8",icon:"C",status:"Brand content...",log:["Brand guidelines","Social templates","Content calendar","Visual identity","Launch prep"]}]}
+const F=[
+{n:"Websites",ac:"#6C5CE7",rooms:[
+{nm:"Custom Websites",d:"Full custom websites. Three.js, GSAP, custom SVG. Every pixel intentional.",st:"active",sl:"Active",ag:[
+{nm:"Builder",rl:"Web Developer",c:"#e17055",ic:"B",s:"Building client site...",lg:["Brand identity done","Three.js scene complete","Deployed to GitHub","Score: 98/100","Client approved"]},
+{nm:"Sentinel",rl:"QA Reviewer",c:"#00b894",ic:"Q",s:"Reviewing code...",lg:["HTML: 98/100","A11y: 92/100","Speed: 96/100","APPROVED","Deployed"]},
+{nm:"Scout",rl:"Lead Prospector",c:"#f39c12",ic:"S",s:"Finding clients...",lg:["Found 3 businesses","Site quality: poor","Lead scored 87","Qualified","Added to pipeline"]}]},
+{nm:"Productized Templates",d:"Pre-built templates for specific industries. Fast delivery, consistent quality.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Builder",rl:"Web Developer",c:"#e17055",ic:"B",s:"Designing template...",lg:["Niche research","Wireframe done","First draft","Testing","Almost done"]},
+{nm:"Echo",rl:"Outreach Specialist",c:"#6C5CE7",ic:"E",s:"Warming leads...",lg:["Tone: Pro","Draft crafted","Sent to 5 leads","2 replies","Meeting set"]}]},
+{nm:"Maintenance Retainer",d:"Monthly website maintenance. Updates, security, monitoring. Recurring revenue.",st:"active",sl:"Active",ag:[
+{nm:"Sentinel",rl:"QA Reviewer",c:"#00b894",ic:"Q",s:"Monitoring sites...",lg:["All 4 sites up","Security clean","Updates applied","99.9% uptime","Report sent"]},
+{nm:"Echo",rl:"Outreach Specialist",c:"#6C5CE7",ic:"E",s:"Upselling...",lg:["Client A: renewal","Client B: add SEO","Pitch sent","Waiting reply","Follow-up"]}]},
+{nm:"White Label Model",d:"Build websites for other agencies under their brand. Volume play.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Vector",rl:"Client Acquisition",c:"#00CEC9",ic:"V",s:"Pitching agencies...",lg:["3 contacted","Demo scheduled","Proposal sent","Negotiating","First close"]},
+{nm:"Builder",rl:"Web Developer",c:"#e17055",ic:"B",s:"Preparing samples...",lg:["Sample 1 done","Sample 2 done","Case study","Portfolio ready","Send it"]}]},
+{nm:"Conversion Bridge",d:"Landing pages optimized for conversion. A/B testing, analytics, CRO.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Scout",rl:"Lead Prospector",c:"#f39c12",ic:"S",s:"Researching market...",lg:["Competitor analysis","Landing audit","CRO opportunities","12 leads","Scored 82"]},
+{nm:"Echo",rl:"Outreach Specialist",c:"#6C5CE7",ic:"E",s:"Outreaching...",lg:["Message crafted","Data-driven tone","Sent to 8","3 opened","1 replied"]}]},
+{nm:"Traffic & Pay",d:"Paid traffic. Google Ads, Meta Ads, retargeting. Drive visitors.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Command AI",rl:"Strategist",c:"#d63031",ic:"C",s:"Planning campaigns...",lg:["Budget set","Audience defined","Creatives ready","Campaign structure","Launch prep"]}]},
+{nm:"Vertical Specific",d:"Websites for specific industries. Medical, legal, restaurants.",st:"active",sl:"Active",ag:[
+{nm:"Scout",rl:"Lead Prospector",c:"#f39c12",ic:"S",s:"Scanning verticals...",lg:["Medical clinics","Legal firms","Restaurants","Scored 90","Pipeline growing"]},
+{nm:"Builder",rl:"Web Developer",c:"#e17055",ic:"B",s:"Building vertical...",lg:["Medical template","Legal 70%","Customizing","Deployed preview","Reviewing"]},
+{nm:"Sentinel",rl:"QA Reviewer",c:"#00b894",ic:"Q",s:"Checking compliance...",lg:["HIPAA passed","ADA 95%","Mobile 97","Speed OK","Approved"]}]}
+]},
+{n:"Apps & SaaS",ac:"#00CEC9",rooms:[
+{nm:"Freemium Tools",d:"Free tools that generate leads. SEO checkers, website grader.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"WebApp AI",rl:"Full-Stack Dev",c:"#55efc4",ic:"W",s:"Building SEO tool...",lg:["MVP done","Landing done","Pricing live","Beta sent","Feedback"]}]},
+{nm:"Micro SaaS",d:"Small focused SaaS. One problem, one solution, monthly revenue.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"SaaS AI",rl:"Product Builder",c:"#74b9ff",ic:"S",s:"Invoice generator...",lg:["Stripe done","Auth done","Beta live","First user","Features"]}]},
+{nm:"Vertical Specific",d:"Apps for specific industries. Medical, legal, restaurant.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"WebApp AI",rl:"Full-Stack Dev",c:"#55efc4",ic:"W",s:"Researching...",lg:["Market analysis","Competitor review","Feature list","Tech stack","Starting"]}]},
+{nm:"Apps as a Service",d:"Custom app development. Web apps, dashboards, internal tools.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Builder",rl:"Web Developer",c:"#e17055",ic:"B",s:"Dashboard prototype...",lg:["Wireframes","React scaffold","API endpoints","DB schema","First screen"]}]},
+{nm:"Marketplace",d:"Multi-sided marketplace platforms. Connect buyers and sellers.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Marketplace AI",rl:"Platform Builder",c:"#ffeaa7",ic:"M",s:"Platform design...",lg:["User flows","Payment split","Search system","Onboarding","First seller"]}]},
+{nm:"Consumer Pillar",d:"App Store / Play Store apps. Consumer-facing mobile.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Growth AI",rl:"Growth Hacker",c:"#00cec9",ic:"G",s:"Market research...",lg:["App store analysis","ASO keywords","Competitor gaps","Monetization","Ready"]}]},
+{nm:"WebApps",d:"Full-stack web apps. CRMs, dashboards, admin panels.",st:"active",sl:"Active",ag:[
+{nm:"WebApp AI",rl:"Full-Stack Dev",c:"#55efc4",ic:"W",s:"Building CRM...",lg:["React scaffold","API endpoints","DB schema","UI components","Testing"]},
+{nm:"Sentinel",rl:"QA Reviewer",c:"#00b894",ic:"Q",s:"Reviewing...",lg:["Tests pass","Integration OK","Performance good","Security OK","Approved"]}]}
+]},
+{n:"Content Creation",ac:"#fd79a8",rooms:[
+{nm:"Done For You",d:"Full content creation. Posts, reels, blogs, newsletters. We do everything.",st:"active",sl:"Active",ag:[
+{nm:"Content AI",rl:"Content Creator",c:"#fd79a8",ic:"C",s:"Writing posts...",lg:["SEO done","Draft 1 done","Adding visuals","Optimizing","Scheduled"]},
+{nm:"Retainer AI",rl:"Account Manager",c:"#fab1a0",ic:"R",s:"Managing clients...",lg:["A: 12 posts","B: 2 reels","C: on track","Reports sent","Renewed"]}]},
+{nm:"Productized Packages",d:"Fixed price, fixed deliverable. 4 posts/mo, 8 posts/mo.",st:"active",sl:"Active",ag:[
+{nm:"Package AI",rl:"Productizer",c:"#e84393",ic:"P",s:"Starter Pack...",lg:["Package designed","Pricing set","Templates ready","Sales page","First buyer"]},
+{nm:"Echo",rl:"Outreach Specialist",c:"#6C5CE7",ic:"E",s:"Selling packages...",lg:["Lead list ready","Message crafted","Sent to 20","5 interested","2 closing"]}]},
+{nm:"Content Retainer",d:"Monthly recurring content. Long-term partnerships.",st:"active",sl:"Active",ag:[
+{nm:"Retainer AI",rl:"Account Manager",c:"#fab1a0",ic:"R",s:"3 clients active...",lg:["A: delivered","B: on track","C: needs help","Monthly review","All good"]}]},
+{nm:"White Label",d:"Agencies resell your content team. Volume, recurring revenue.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Vector",rl:"Client Acquisition",c:"#00CEC9",ic:"V",s:"Pitching agencies...",lg:["5 contacted","Demo done","Proposal sent","Negotiating","First deal"]}]},
+{nm:"Vertical Specific",d:"Content for one niche. Medical, legal, restaurant social.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Content AI",rl:"Content Creator",c:"#fd79a8",ic:"C",s:"Medical content...",lg:["Research done","Pro tone","Draft 1 done","Medical review","Approved"]},
+{nm:"Scout",rl:"Lead Prospector",c:"#f39c12",ic:"S",s:"Finding verticals...",lg:["Medical practices","Law firms","Dental clinics","Scored 88","Pipeline"]}]}
+]},
+{n:"Marketing",ac:"#d63031",rooms:[
+{nm:"Marketing Command",d:"Central strategy hub. Plans campaigns, allocates budget, tracks all floors.",st:"active",sl:"Active",ag:[
+{nm:"Command AI",rl:"Strategist",c:"#d63031",ic:"C",s:"200+ accounts...",lg:["IG: 45 active","TW: 80 posting","LI: 30 engaging","Strategy updated","Campaign live"]}]},
+{nm:"Account Farm",d:"Hundreds of social accounts. Automated posting, engagement, growth.",st:"active",sl:"Active",ag:[
+{nm:"Farm AI",rl:"Operator",c:"#e17055",ic:"A",s:"50 IG accounts...",lg:["Batch created","Engagement 4.2%","No flags","Content scheduled","Growth +12%"]}]},
+{nm:"Growth Engine",d:"Funnels, A/B testing, conversion optimization. Data-driven growth.",st:"active",sl:"Active",ag:[
+{nm:"Growth AI",rl:"Growth Hacker",c:"#00cec9",ic:"G",s:"Funnel #7...",lg:["A/B running","B: +23%","Rolling out","CPL: $2.10","ROI: 340%"]}]},
+{nm:"Outreach Hub",d:"Cold email, DM outreach, lead nurturing. Communication engine.",st:"active",sl:"Active",ag:[
+{nm:"Echo",rl:"Outreach Specialist",c:"#6C5CE7",ic:"E",s:"Warming leads...",lg:["Batch: 50 sent","Open: 42%","Replies: 8","Positive: 5","Meetings: 2"]},
+{nm:"Scout",rl:"Lead Prospector",c:"#f39c12",ic:"S",s:"Building lists...",lg:["New: 30 leads","Verified: 28","Scored: 85+","Added to CRM","Ready"]}]},
+{nm:"Brand & Image",d:"Company branding, social presence, reputation management.",st:"pipeline",sl:"Pipeline",ag:[
+{nm:"Content AI",rl:"Content Creator",c:"#fd79a8",ic:"C",s:"Brand content...",lg:["Brand guidelines","Social templates","Content calendar","Visual identity","Launch prep"]}]}
 ]}
 ];
 
-function buildHallways(){
-FLOORS.forEach((floor,fi)=>{
-const el=document.getElementById("hallway"+(fi+1));
-let html="";
-floor.rooms.forEach((room,ri)=>{
-const isReverse=ri%2===1;
-const agentDots=room.agents.map(a=>
-'<div class="agent-dot" style="background:'+a.color+'20;color:'+a.color+';border-color:'+a.color+'40" title="'+a.name+'">'+a.icon+'</div>'
-).join("");
-html+='<div class="room-row'+(isReverse?" reverse":"")+'" style="--accent:'+floor.accent+'">';
-html+='<div class="room-card" style="--accent:'+floor.accent+'" data-fi="'+fi+'" data-ri="'+ri+'" onclick="openRoom(this.dataset.fi,this.dataset.ri)">';
-html+='<div class="room-num">Room '+room.num+'</div>';
-html+='<div class="room-name">'+room.name+'</div>';
-html+='<div class="room-desc">'+room.desc+'</div>';
-html+='<div class="room-status '+room.status+'"><div class="dot"></div>'+room.statusLabel+'</div>';
-html+='<div class="room-agents">'+agentDots+'</div>';
-html+="</div>";
-html+='<div class="room-center" style="--accent:'+floor.accent+'"></div>';
-html+='<div style="flex:1"></div>';
-html+="</div>";
+function buildH(){
+F.forEach((fl,fi)=>{
+const el=document.getElementById("h"+(fi+1));if(!el)return;
+let h="";
+fl.rooms.forEach((rm,ri)=>{
+const rev=ri%2===1;
+const avs=rm.ag.map(a=>'<div class="agent-ava" style="background:'+a.c+'18;color:'+a.c+';border:1px solid '+a.c+'30" title="'+a.nm+'">'+a.ic+'</div>').join("");
+h+='<div class="room-row'+(rev?' rev':'')+'" style="--ac:'+fl.ac+'">';
+h+='<div class="room-card" style="--ac:'+fl.ac+'" data-fi="'+fi+'" data-ri="'+ri+'">';
+h+='<div class="room-glass"></div>';
+h+='<div class="room-top">';
+h+='<div class="room-num">Room '+(ri+1)+'</div>';
+h+='<div class="room-name">'+rm.nm+'</div>';
+h+='<div class="room-desc">'+rm.d+'</div>';
+h+='<div class="room-badge badge-'+rm.st+'"><div class="badge-dot"></div>'+rm.sl+'</div>';
+h+='</div>';
+h+='<div class="room-agents-bar">'+avs+'<span class="agents-label">'+rm.ag.length+' agents</span></div>';
+h+='</div>';
+h+='<div class="room-center-dot" style="--ac:'+fl.ac+'"></div>';
+h+='<div class="room-spacer"></div>';
+h+='</div>';
 });
-el.innerHTML=html;
-})}
-
-function openRoom(fi,ri){
-const room=FLOORS[fi].rooms[ri];
-const floor=FLOORS[fi];
-let html='<button class="back-btn" onclick="closeRoom()">&larr; Back to Hallway</button>';
-html+='<div class="panel-room-name" style="color:'+floor.accent+'">'+room.name+'</div>';
-html+='<div class="panel-room-desc">'+room.desc+'</div>';
-room.agents.forEach(a=>{
-html+='<div class="agent-desk" style="--accent:'+a.color+'">';
-html+='<div class="desk-header">';
-html+='<div class="desk-avatar" style="background:'+a.color+'20;color:'+a.color+'">'+a.icon+'</div>';
-html+='<div><div class="desk-name">'+a.name+'</div><div class="desk-role">'+a.role+'</div></div>';
-html+="</div>";
-html+='<div class="desk-status"><div class="dot"></div>'+a.status+'</div>';
-html+='<div class="desk-log">'+a.log.map(l=>"<div>"+l+"</div>").join("")+'</div>';
-html+="</div>";
+el.innerHTML=h;
 });
-document.getElementById("panel").innerHTML=html;
-document.getElementById("overlay").classList.add("open");
-document.body.style.overflow="hidden"}
+document.querySelectorAll(".room-card").forEach(c=>{
+c.addEventListener("click",()=>openR(+c.dataset.fi,+c.dataset.ri));
+});
+}
 
-function closeRoom(){
-document.getElementById("overlay").classList.remove("open");
-document.body.style.overflow=""}
+function openR(fi,ri){
+const rm=F[fi].rooms[ri],fl=F[fi];
+let h='<button class="p-back" onclick="closeR()">&#8592; Back to Hallway</button>';
+h+='<div class="p-name" style="color:'+fl.ac+'">'+rm.nm+'</div>';
+h+='<div class="p-desc">'+rm.d+'</div>';
+rm.ag.forEach(a=>{
+h+='<div class="desk" style="--ac:'+a.c+'">';
+h+='<div class="desk-head"><div class="desk-av" style="background:'+a.c+'18;color:'+a.c+'">'+a.ic+'</div>';
+h+='<div><div class="desk-nm">'+a.nm+'</div><div class="desk-rl">'+a.rl+'</div></div></div>';
+h+='<div class="desk-st"><div class="dot"></div>'+a.s+'</div>';
+h+='<div class="desk-lg">'+a.lg.map(l=>'<div>'+l+'</div>').join('')+'</div>';
+h+='</div>';
+});
+document.getElementById("pn").innerHTML=h;
+document.getElementById("ov").classList.add("open");
+document.body.style.overflow="hidden";
+}
 
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeRoom()});
+function closeR(){document.getElementById("ov").classList.remove("open");document.body.style.overflow=""}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeR()});
 
-function scrollToFloor(n){
-document.getElementById("floor"+n).scrollIntoView({behavior:"smooth"})}
+function goFloor(n){document.getElementById("f"+n).scrollIntoView({behavior:"smooth"})}
 
-const floorNames=["Floor 1","Floor 2","Floor 3","Floor 4"];
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(e=>{
-if(e.isIntersecting){
-const f=e.target.dataset.floor;
-if(f)document.getElementById("floorInd").textContent="Floor "+f+" \u2014 "+FLOORS[parseInt(f)-1].name}});
-},{threshold:.3});
-document.querySelectorAll(".floor-section").forEach(s=>observer.observe(s));
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+const f=e.target.dataset.f;if(f){
+const fl=F[+f-1];
+document.getElementById("nf").textContent="Floor "+f+" \u2014 "+fl.n;
+// Open elevator doors
+const ed=document.querySelector("#el"+f+" .elev-doors");
+if(ed)setTimeout(()=>ed.classList.add("open"),300);
+}}})},{threshold:.4});
+document.querySelectorAll(".floor-sec").forEach(s=>obs.observe(s));
 
-buildHallways();
+// Elevator door animation on scroll
+const eobs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+e.target.querySelector(".elev-doors")?.classList.add("open");
+}else{
+e.target.querySelector(".elev-doors")?.classList.remove("open");
+}})},{threshold:.5});
+document.querySelectorAll(".elevator").forEach(s=>eobs.observe(s));
+
+buildH();
 </script>
 </body>
 </html>
