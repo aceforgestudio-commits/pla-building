@@ -338,7 +338,7 @@ const agentDots=room.agents.map(a=>
 '<div class="agent-dot" style="background:'+a.color+'20;color:'+a.color+';border-color:'+a.color+'40" title="'+a.name+'">'+a.icon+'</div>'
 ).join("");
 html+='<div class="room-row'+(isReverse?" reverse":"")+'" style="--accent:'+floor.accent+'">';
-html+='<div class="room-card" style="--accent:'+floor.accent+'" onclick="openRoom(\''+fi+','+ri+'\')">';
+html+='<div class="room-card" style="--accent:'+floor.accent+'" data-fi="'+fi+'" data-ri="'+ri+'" onclick="openRoom(this.dataset.fi,this.dataset.ri)">';
 html+='<div class="room-num">Room '+room.num+'</div>';
 html+='<div class="room-name">'+room.name+'</div>';
 html+='<div class="room-desc">'+room.desc+'</div>';
