@@ -3,41 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Pla — The Building</title>
+<title>My Pla - The Building</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;overflow:hidden;height:100vh;width:100vw;font-family:'Segoe UI',system-ui,sans-serif}
-canvas{display:block}
-#blocker{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.95);display:flex;flex-direction:column;align-items:center;justify-content:center}
+canvas{display:block;position:fixed;inset:0;z-index:1}
+#blocker{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.96);display:flex;flex-direction:column;align-items:center;justify-content:center}
 #blocker.hidden{display:none}
-#blocker h1{font-size:3rem;font-weight:800;margin-bottom:4px}
-#blocker h1 span{color:#6C5CE7}
-#blocker .sub{color:#888;font-size:1.05rem;margin-bottom:32px}
-#blocker .btn{padding:16px 50px;background:linear-gradient(135deg,#6C5CE7,#00CEC9);border:none;border-radius:12px;color:#fff;font-size:1.1rem;font-weight:700;cursor:pointer;transition:all .2s}
-#blocker .btn:hover{transform:scale(1.04);box-shadow:0 8px 30px rgba(108,92,231,.5)}
-#blocker .info{margin-top:32px;color:#555;font-size:.82rem;text-align:center;line-height:2.2}
-#blocker kbd{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:2px 8px;color:#aaa;font-family:inherit}
-#hud{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:rgba(5,5,20,.85);border-bottom:1px solid rgba(255,255,255,.06);pointer-events:none;opacity:0;transition:opacity .3s}
+#blocker h1{font-size:3.2rem;font-weight:800;margin-bottom:4px;letter-spacing:-1px}
+#blocker h1 span{background:linear-gradient(135deg,#6C5CE7,#00CEC9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+#blocker .sub{color:#777;font-size:1rem;margin-bottom:36px}
+#blocker .btn{padding:16px 56px;background:linear-gradient(135deg,#6C5CE7,#00CEC9);border:none;border-radius:14px;color:#fff;font-size:1.15rem;font-weight:700;cursor:pointer;transition:all .2s}
+#blocker .btn:hover{transform:scale(1.05);box-shadow:0 8px 40px rgba(108,92,231,.5)}
+#blocker .info{margin-top:36px;color:#555;font-size:.8rem;text-align:center;line-height:2.4}
+#blocker kbd{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:3px 9px;color:#999;font-family:inherit;font-size:.78rem}
+#hud{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:rgba(5,5,20,.88);border-bottom:1px solid rgba(255,255,255,.05);pointer-events:none;opacity:0;transition:opacity .3s}
 #hud.vis{opacity:1}
-#hud .fl{font-weight:700;font-size:.9rem;color:#c4b5fd}
-#hud .pos{font-size:.8rem;color:#666}
-#panel{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:100;display:none;width:440px;max-width:92vw;background:rgba(8,8,25,.97);border:1px solid rgba(108,92,231,.3);border-radius:16px;padding:20px 24px;box-shadow:0 16px 60px rgba(0,0,0,.8)}
-#panel.vis{display:flex;gap:14px;align-items:flex-start}
-#panel .av{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;flex-shrink:0}
+#hud .fl{font-weight:700;font-size:.95rem;color:#c4b5fd}
+#hud .rm{font-size:.85rem;color:#6ee7b7;font-weight:600}
+#panel{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;display:none;width:460px;max-width:92vw;background:rgba(8,8,28,.98);border:1px solid rgba(108,92,231,.3);border-radius:18px;padding:22px 26px;box-shadow:0 20px 70px rgba(0,0,0,.85)}
+#panel.vis{display:flex;gap:16px;align-items:flex-start}
+#panel .av{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;flex-shrink:0}
 #panel .inf{flex:1;min-width:0}
-#panel .nm{font-size:1.05rem;font-weight:700}
-#panel .rl{font-size:.75rem;color:#888;margin-top:1px}
-#panel .st{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;margin:8px 0;font-size:.82rem;color:#bbb}
-#panel .dot{width:7px;height:7px;border-radius:50%;background:#10b981;flex-shrink:0;animation:pulse 2s infinite}
+#panel .nm{font-size:1.1rem;font-weight:700}
+#panel .rl{font-size:.78rem;color:#888;margin-top:2px}
+#panel .st{display:flex;align-items:center;gap:8px;padding:9px 14px;background:rgba(255,255,255,.03);border-radius:10px;margin:10px 0 8px;font-size:.84rem;color:#bbb}
+#panel .dot{width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-#panel .log{font-size:.72rem;color:#555;line-height:1.6;max-height:65px;overflow-y:auto}
-#panel .log div{padding:2px 0;border-bottom:1px solid rgba(255,255,255,.03)}
-#elev{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);z-index:100;display:none;padding:10px 24px;background:rgba(108,92,231,.9);border-radius:10px;font-size:.88rem;font-weight:600;pointer-events:none}
+#panel .log{font-size:.73rem;color:#555;line-height:1.7;max-height:70px;overflow-y:auto}
+#panel .log div{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+#elev{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);z-index:100;display:none;padding:11px 28px;background:rgba(243,156,18,.92);border-radius:12px;font-size:.9rem;font-weight:600;pointer-events:none;color:#000}
 #elev.vis{display:block}
-#hint{position:fixed;top:55%;left:50%;transform:translate(-50%,-50%);z-index:150;padding:10px 24px;background:rgba(108,92,231,.85);border-radius:10px;font-size:.88rem;font-weight:600;pointer-events:none;opacity:0;transition:opacity .3s}
+#hint{position:fixed;top:52%;left:50%;transform:translate(-50%,-50%);z-index:150;padding:12px 30px;background:rgba(108,92,231,.9);border-radius:12px;font-size:.92rem;font-weight:600;pointer-events:none;opacity:0;transition:opacity .3s}
 #hint.vis{opacity:1}
-#minimap{position:fixed;top:60px;right:16px;z-index:100;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(0,0,0,.7);pointer-events:none;opacity:0;transition:opacity .3s}
-#minimap.vis{opacity:1}
 </style>
 </head>
 <body>
@@ -46,404 +44,335 @@ canvas{display:block}
   <div class="sub">Walk through your AI agency. Meet every agent.</div>
   <button class="btn" id="enterBtn">Enter the Building</button>
   <div class="info">
-    <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Move &nbsp;
-    <kbd>E</kbd> Elevator &nbsp;
-    <kbd>F</kbd> Minimap &nbsp;
+    <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Move &nbsp;&nbsp;
+    <kbd>Shift</kbd> Sprint &nbsp;&nbsp;
+    <kbd>E</kbd> Elevator<br>
     <kbd>Esc</kbd> Pause
   </div>
 </div>
-<div id="hud"><div><div class="fl" id="fl"></div></div><div class="pos" id="pos"></div></div>
+<div id="hud"><div><div class="fl" id="fl"></div></div><div class="rm" id="rm"></div></div>
 <div id="panel"><div class="av" id="av"></div><div class="inf"><div class="nm" id="nm"></div><div class="rl" id="rl"></div><div class="st"><div class="dot"></div><span id="st"></span></div><div class="log" id="lg"></div></div></div>
 <div id="elev">Press <kbd>E</kbd> to change floor</div>
 <div id="hint"></div>
-<canvas id="minimap" width="180" height="140"></canvas>
 
 <script>
-const C = document.createElement('canvas');
-const X = C.getContext('2d');
+const C=document.createElement('canvas'),X=C.getContext('2d');
 document.body.prepend(C);
-C.style.cssText = 'position:fixed;inset:0;z-index:1';
+let W,H;
+function resize(){W=C.width=innerWidth;H=C.height=innerHeight}
+resize();addEventListener('resize',resize);
 
-let W, H;
-function resize() { W = C.width = innerWidth; H = C.height = innerHeight; }
-resize();
-addEventListener('resize', resize);
+const T=48;
+let mapW,mapH,map,currentFloor=0;
+let gameStarted=false,paused=false,showPanel=false,nearElevator=false,panelRoom=null,hintTimer=null;
+const player={x:0,y:0,vx:0,vy:0,r:11,spd:5,friction:0.82};
+const keys={};
 
-const TILE = 40;
-const COLORS = {
-  floor: '#12122a', wall: '#1e1e3a', wallTop: '#2a2a50',
-  door: '#3a3a60', hallway: '#0e0e22', player: '#6C5CE7',
-  elevator: '#f39c12', agentBg: '#1a1a35'
-};
-
-const FLOORS = [
-  { name:'Floor 1 — Websites', color:'#6C5CE7', rooms:[
-    {name:"Scout's Den",agent:{name:'Scout',role:'Lead Prospector',color:'#f39c12',icon:'S',status:'Scanning for leads...',log:['Found 3 new businesses','Analyzing website quality...','Lead scored 85/100']}},
-    {name:"Echo's Office",agent:{name:'Echo',role:'Outreach Specialist',color:'#6C5CE7',icon:'E',status:'Warming lead...',log:['Tone: Professional','Crafting opener...','Lead replied!']}},
-    {name:"Vector's Room",agent:{name:'Vector',role:'Client Acquisition',color:'#00CEC9',icon:'V',status:'Reviewing proposal',log:['Deal: $4,200','Objection handled','Contract sent']}},
-    {name:"Builder's Workshop",agent:{name:'Builder',role:'Web Developer',color:'#e17055',icon:'B',status:'Building site...',log:['Brand generated','Three.js done','Deployed to GitHub']}},
-    {name:"Sentinel's Station",agent:{name:'Sentinel',role:'QA Reviewer',color:'#00b894',icon:'Q',status:'Reviewing code',log:['HTML: 98/100','A11y: 92/100','APPROVED']}},
-  ]},
-  { name:'Floor 2 — Apps & SaaS', color:'#00CEC9', rooms:[
-    {name:'Freemium Lab',agent:{name:'Freemium AI',role:'Tool Builder',color:'#a29bfe',icon:'F',status:'Building SEO Tool',log:['MVP done','Logic coded','Landing 80%']}},
-    {name:'SaaS Room',agent:{name:'SaaS AI',role:'Product Builder',color:'#74b9ff',icon:'S',status:'Invoice Generator',log:['Stripe done','Auth flow done','Beta live']}},
-    {name:'WebApps Studio',agent:{name:'WebApp AI',role:'Full-Stack Dev',color:'#55efc4',icon:'W',status:'CRM Dashboard',log:['React scaffold','API defined','DB schema done']}},
-    {name:'Marketplace Room',agent:{name:'Marketplace AI',role:'Platform Builder',color:'#ffeaa7',icon:'M',status:'Design Store',log:['Onboarding flow','Payment split','Search filter']}},
-  ]},
-  { name:'Floor 3 — Content', color:'#fd79a8', rooms:[
-    {name:'Content Factory',agent:{name:'Content AI',role:'Content Creator',color:'#fd79a8',icon:'C',status:'Writing posts',log:['SEO done','Draft 1/5','Adding visuals']}},
-    {name:'Package Room',agent:{name:'Package AI',role:'Productizer',color:'#e84393',icon:'P',status:'Starter Pack',log:['4 posts/mo','Pricing: $800','Templates ready']}},
-    {name:'Retainer Office',agent:{name:'Retainer AI',role:'Account Manager',color:'#fab1a0',icon:'R',status:'3 clients active',log:['A: 12 posts','B: 2 reels','On track']}},
-  ]},
-  { name:'Floor 4 — Marketing', color:'#d63031', rooms:[
-    {name:'Marketing Command',agent:{name:'Command AI',role:'Strategist',color:'#d63031',icon:'C',status:'200+ accounts',log:['IG: 45 active','TW: 80 posting','LI: 30 engaging']}},
-    {name:'Account Farm',agent:{name:'Farm AI',role:'Operator',color:'#e17055',icon:'A',status:'50 IG accounts',log:['Batch done','Engagement 4.2%','No flags']}},
-    {name:'Growth Engine',agent:{name:'Growth AI',role:'Growth Hacker',color:'#00cec9',icon:'G',status:'Funnel #7',log:['A/B running','B +23%','Rolling out']}},
-  ]},
+const FLOORS=[
+{name:'Floor 1 \u2014 Websites',accent:'#6C5CE7',rooms:[
+{id:'scout',name:"Scout's Den",floor:'#161122',accent:'#f39c12',
+agent:{name:'Scout',role:'Lead Prospector',color:'#f39c12',icon:'S',status:'Scanning for leads...',log:['Found 3 new businesses','Analyzing website quality...','Lead scored 85/100','Qualified: Marketing Agency','Added to pipeline']}},
+{id:'echo',name:"Echo's Office",floor:'#10102a',accent:'#6C5CE7',
+agent:{name:'Echo',role:'Outreach Specialist',color:'#6C5CE7',icon:'E',status:'Warming lead...',log:['Tone: Professional','Crafting opener...','Lead replied positively!','Moving to discovery call','Follow-up scheduled']}},
+{id:'vector',name:"Vector's Room",floor:'#0c1c1c',accent:'#00CEC9',
+agent:{name:'Vector',role:'Client Acquisition',color:'#00CEC9',icon:'V',status:'Reviewing proposal',log:['Deal value: $4,200','Objection handled','Contract sent to client','Payment received!','New deal closed']}},
+{id:'builder',name:"Builder's Workshop",floor:'#1c1410',accent:'#e17055',
+agent:{name:'Builder',role:'Web Developer',color:'#e17055',icon:'B',status:'Building site...',log:['Brand guidelines done','Three.js scene complete','Deployed to GitHub','Performance score: 98','Client review passed']}},
+{id:'sentinel',name:"Sentinel's Station",floor:'#0c1c14',accent:'#00b894',
+agent:{name:'Sentinel',role:'QA Reviewer',color:'#00b894',icon:'Q',status:'Reviewing code',log:['HTML score: 98/100','Accessibility: 92/100','Performance: 95/100','APPROVED','Deployed to production']}}
+]},
+{name:'Floor 2 \u2014 Apps & SaaS',accent:'#00CEC9',rooms:[
+{id:'freemium',name:'Freemium Lab',floor:'#141020',accent:'#a29bfe',
+agent:{name:'Freemium AI',role:'Tool Builder',color:'#a29bfe',icon:'F',status:'Building SEO Tool',log:['MVP completed','Core logic coded','Landing page 80%','Beta testers invited','Feedback collected']}},
+{id:'saas',name:'SaaS Room',floor:'#0e1422',accent:'#74b9ff',
+agent:{name:'SaaS AI',role:'Product Builder',color:'#74b9ff',icon:'S',status:'Invoice Generator',log:['Stripe integration done','Auth flow complete','Beta is live','First paying user!','Feature request logged']}},
+{id:'webapps',name:'WebApps Studio',floor:'#0c1c16',accent:'#55efc4',
+agent:{name:'WebApp AI',role:'Full-Stack Dev',color:'#55efc4',icon:'W',status:'CRM Dashboard',log:['React scaffold ready','API endpoints defined','Database schema done','UI components built','Testing in progress']}},
+{id:'marketplace',name:'Marketplace Room',floor:'#1c1a0e',accent:'#ffeaa7',
+agent:{name:'Marketplace AI',role:'Platform Builder',color:'#ffeaa7',icon:'M',status:'Design Store',log:['Onboarding flow done','Payment split working','Search filter live','First seller onboarded','10 listings created']}}
+]},
+{name:'Floor 3 \u2014 Content',accent:'#fd79a8',rooms:[
+{id:'content',name:'Content Factory',floor:'#1c0e16',accent:'#fd79a8',
+agent:{name:'Content AI',role:'Content Creator',color:'#fd79a8',icon:'C',status:'Writing posts',log:['SEO research done','Draft 1 of 5 complete','Adding visuals...','Optimizing headlines','Scheduler set']}},
+{id:'packages',name:'Package Room',floor:'#1c0c14',accent:'#e84393',
+agent:{name:'Package AI',role:'Productizer',color:'#e84393',icon:'P',status:'Starter Pack',log:['4 posts/month package','Pricing: $800/mo','Templates ready','Onboarding docs done','Sales page live']}},
+{id:'retainer',name:'Retainer Office',floor:'#1c1410',accent:'#fab1a0',
+agent:{name:'Retainer AI',role:'Account Manager',color:'#fab1a0',icon:'R',status:'3 clients active',log:['Client A: 12 posts done','Client B: 2 reels created','Client C: On track','Monthly report sent','Renewal confirmed']}}
+]},
+{name:'Floor 4 \u2014 Marketing',accent:'#d63031',rooms:[
+{id:'command',name:'Marketing Command',floor:'#1c0e0e',accent:'#d63031',
+agent:{name:'Command AI',role:'Strategist',color:'#d63031',icon:'C',status:'200+ accounts',log:['IG: 45 accounts active','TW: 80 posting daily','LI: 30 engaging','Strategy updated','Campaign launched']}},
+{id:'accounts',name:'Account Farm',floor:'#1c140e',accent:'#e17055',
+agent:{name:'Farm AI',role:'Operator',color:'#e17055',icon:'A',status:'50 IG accounts',log:['Batch creation done','Engagement rate: 4.2%','No flags detected','Content scheduled','Growth: +12% this week']}},
+{id:'growth',name:'Growth Engine',floor:'#0c1c1c',accent:'#00cec9',
+agent:{name:'Growth AI',role:'Growth Hacker',color:'#00cec9',icon:'G',status:'Funnel #7',log:['A/B test running','Variant B: +23%','Rolling out winner','Cost per lead: $2.10','ROI: 340%']}}
+]}
 ];
 
-// Map layout: 0=floor, 1=wall, 2=door, 3=elevator, 4=agent desk
-// Each floor has: top wall, 5 rooms (3 top, hallway, 2 bottom), bottom wall
-const MAP_W = 22, MAP_H = 16;
+function buildMap(fi){
+mapW=24;mapH=16;
+const m=[];
+for(let y=0;y<mapH;y++){m[y]=[];for(let x=0;x<mapW;x++){
+if(y===0||y===mapH-1||x===0||x===mapW-1){m[y][x]=1;continue}
+if(y===7||y===8){m[y][x]=0;continue}
+if((x===6||x===12)&&y>=1&&y<=6){m[y][x]=1;continue}
+if((x===6||x===12||x===18)&&y>=9&&y<=14){m[y][x]=1;continue}
+if(y===6&&(x>=1&&x<=5||x>=7&&x<=11||x>=13&&x<=17)){m[y][x]=1;continue}
+if(y===9&&(x>=1&&x<=5||x>=7&&x<=11||x>=13&&x<=17||x>=19&&x<=22)){m[y][x]=1;continue}
+m[y][x]=0}}
+m[6][3]=2;m[6][9]=2;m[6][15]=2;
+m[9][3]=2;m[9][9]=2;m[9][15]=2;
+const br=FLOORS[fi].rooms.length;
+if(br>3)m[9][20]=2;
+m[7][1]=3;m[8][1]=3;m[7][2]=3;m[8][2]=3;
+return m}
 
-function buildMap(floorIdx) {
-  const m = [];
-  for (let y = 0; y < MAP_H; y++) {
-    m[y] = [];
-    for (let x = 0; x < MAP_W; x++) {
-      // Walls on edges
-      if (y === 0 || y === MAP_H - 1 || x === 0 || x === MAP_W - 1) { m[y][x] = 1; continue; }
-      // Hallway (row 7-8)
-      if (y === 7 || y === 8) { m[y][x] = 0; continue; }
-      // Vertical walls between rooms
-      if ((x === 5 || x === 11 || x === 17) && y !== 7 && y !== 8) { m[y][x] = 1; continue; }
-      // Floor
-      m[y][x] = 0;
-    }
-  }
-  // Doors (openings in walls)
-  m[7][5] = 2; m[8][5] = 2;
-  m[7][11] = 2; m[8][11] = 2;
-  m[7][17] = 2; m[8][17] = 2;
-  // Elevator at left end of hallway
-  m[7][2] = 3; m[8][2] = 3; m[7][3] = 3; m[8][3] = 3;
-  return m;
-}
+function getRoomAt(px,py){
+const tx=Math.floor(px/T),ty=Math.floor(py/T);
+const f=FLOORS[currentFloor],top=f.rooms.slice(0,3),bot=f.rooms.slice(3);
+if(ty>=1&&ty<=5){
+if(tx>=1&&tx<=5&&top[0])return top[0];
+if(tx>=7&&tx<=11&&top[1])return top[1];
+if(tx>=13&&tx<=17&&top[2])return top[2]}
+if(ty>=10&&ty<=13){
+if(tx>=1&&tx<=5&&bot[0])return bot[0];
+if(tx>=7&&tx<=11&&bot[1])return bot[1];
+if(tx>=13&&tx<=17&&bot[2])return bot[2];
+if(tx>=19&&tx<=22&&bot[3])return bot[3]}
+return null}
 
-let map = buildMap(0);
-let currentFloor = 0;
+function getAgentPositions(){
+const f=FLOORS[currentFloor],pos=[];
+const tz=[{cx:3,cy:3},{cx:9,cy:3},{cx:15,cy:3}];
+const bz=[{cx:3,cy:11.5},{cx:9,cy:11.5},{cx:15,cy:11.5},{cx:20.5,cy:11.5}];
+f.rooms.slice(0,3).forEach((r,i)=>{if(tz[i])pos.push({room:r,cx:tz[i].cx*T,cy:tz[i].cy*T})});
+f.rooms.slice(3).forEach((r,i)=>{if(bz[i])pos.push({room:r,cx:bz[i].cx*T,cy:bz[i].cy*T})});
+return pos}
+
+let agentPositions=getAgentPositions();
+
+addEventListener('keydown',e=>{
+keys[e.key.toLowerCase()]=true;
+if(e.key==='Shift')player.sprinting=true;
+if(e.key.toLowerCase()==='e'&&nearElevator){
+currentFloor=(currentFloor+1)%FLOORS.length;
+map=buildMap(currentFloor);agentPositions=getAgentPositions();
+player.x=2*T;player.y=7.5*T;player.vx=0;player.vy=0;
+showHint(FLOORS[currentFloor].name)}
+if(e.key==='Escape')paused=!paused;
+});
+addEventListener('keyup',e=>{keys[e.key.toLowerCase()]=false;if(e.key==='Shift')player.sprinting=false});
+
+function showHint(t){const el=document.getElementById('hint');el.textContent=t;el.classList.add('vis');clearTimeout(hintTimer);hintTimer=setTimeout(()=>el.classList.remove('vis'),2000)}
+
+function isWalkable(px,py){const tx=Math.floor(px/T),ty=Math.floor(py/T);if(tx<0||tx>=mapW||ty<0||ty>=mapH)return false;return map[ty][tx]!==1}
+function canMove(nx,ny){const r=player.r*0.6;return isWalkable(nx-r,ny-r)&&isWalkable(nx+r,ny-r)&&isWalkable(nx-r,ny+r)&&isWalkable(nx+r,ny+r)}
+
+let camX=0,camY=0;
+
+function update(){
+if(!gameStarted||paused)return;
+const spd=player.sprinting?8:5;
+let ax=0,ay=0;
+if(keys['w']||keys['arrowup'])ay=-spd;
+if(keys['s']||keys['arrowdown'])ay=spd;
+if(keys['a']||keys['arrowleft'])ax=-spd;
+if(keys['d']||keys['arrowright'])ax=spd;
+if(ax&&ay){ax*=0.707;ay*=0.707}
+player.vx+=ax;player.vy+=ay;
+player.vx*=player.friction;player.vy*=player.friction;
+const nx=player.x+player.vx,ny=player.y+player.vy;
+if(canMove(nx,player.y))player.x=nx;else player.vx=0;
+if(canMove(player.x,ny))player.y=ny;else player.vy=0;
+camX+=(player.x-W/2-camX)*0.12;
+camY+=(player.y-H/2-camY)*0.12;
+const etx=Math.floor(player.x/T),ety=Math.floor(player.y/T);
+nearElevator=(etx>=1&&etx<=2&&ety>=7&&ety<=8);
+document.getElementById('elev').classList.toggle('vis',nearElevator);
+let nearest=null,minD=90;
+agentPositions.forEach(ap=>{const d=Math.hypot(player.x-ap.cx,player.y-ap.cy);if(d<minD){minD=d;nearest=ap}});
+if(nearest&&!nearElevator){
+if(!showPanel||panelRoom!==nearest.room){
+panelRoom=nearest.room;showPanel=true;
+const a=nearest.room.agent;
+document.getElementById('av').textContent=a.icon;
+document.getElementById('av').style.cssText='background:'+a.color+'20;color:'+a.color;
+document.getElementById('nm').textContent=a.name;
+document.getElementById('rl').textContent=a.role+' \u2014 '+nearest.room.name;
+document.getElementById('st').textContent=a.status;
+document.getElementById('lg').innerHTML=a.log.map(l=>'<div>\u2022 '+l+'</div>').join('');
+document.getElementById('panel').classList.add('vis')}}else{
+if(showPanel){showPanel=false;document.getElementById('panel').classList.remove('vis')}}
+const curRoom=getRoomAt(player.x,player.y);
+document.getElementById('rm').textContent=curRoom?curRoom.name:'Hallway';
+document.getElementById('fl').textContent=FLOORS[currentFloor].name}
+
+function drawFurniture(cx,cy,type,accent){
+X.save();X.globalAlpha=0.5;
+switch(type){
+case'scout':
+X.fillStyle='#2a2040';X.fillRect(cx-28,cy-30,20,14);
+X.strokeStyle=accent;X.lineWidth=1;X.strokeRect(cx-28,cy-30,20,14);
+X.beginPath();X.arc(cx+20,cy-23,8,0,Math.PI*2);X.strokeStyle=accent;X.stroke();
+X.beginPath();X.arc(cx+20,cy-23,4,0,Math.PI*2);X.stroke();break;
+case'echo':
+X.fillStyle='#2a2040';X.fillRect(cx-24,cy-32,12,18);
+X.strokeStyle=accent;X.lineWidth=1;
+X.beginPath();X.arc(cx+16,cy-23,6,0,Math.PI*2);X.stroke();
+X.beginPath();X.arc(cx+16,cy-23,10,0,Math.PI*2);X.stroke();break;
+case'vector':
+X.fillStyle='#2a2040';X.fillRect(cx-26,cy-28,16,12);
+X.fillStyle=accent+'40';X.fillRect(cx-24,cy-26,12,8);
+X.fillRect(cx-20,cy-34,16,12);break;
+case'builder':
+X.fillStyle='#1a1520';X.fillRect(cx-30,cy-34,14,10);X.fillRect(cx-14,cy-34,14,10);
+X.strokeStyle=accent;X.lineWidth=1;
+X.strokeRect(cx-30,cy-34,14,10);X.strokeRect(cx-14,cy-34,14,10);
+X.fillStyle=accent+'60';
+X.fillRect(cx-28,cy-30,8,1);X.fillRect(cx-28,cy-27,6,1);
+X.fillRect(cx-12,cy-30,10,1);X.fillRect(cx-12,cy-27,7,1);break;
+case'sentinel':
+X.beginPath();X.moveTo(cx,cy-36);X.lineTo(cx+12,cy-28);X.lineTo(cx+8,cy-18);X.lineTo(cx-8,cy-18);X.lineTo(cx-12,cy-28);X.closePath();
+X.fillStyle=accent+'30';X.fill();X.strokeStyle=accent;X.lineWidth=1.5;X.stroke();break;
+case'freemium':
+X.fillStyle='#2a2040';X.fillRect(cx-28,cy-32,24,16);
+X.strokeStyle=accent;X.lineWidth=1;
+X.strokeRect(cx-26,cy-30,6,5);X.strokeRect(cx-18,cy-30,6,5);X.strokeRect(cx-10,cy-30,6,5);break;
+case'saas':
+X.fillStyle='#2a2040';X.fillRect(cx-20,cy-34,30,20);
+X.strokeStyle=accent;X.lineWidth=1;X.strokeRect(cx-20,cy-34,30,20);
+X.fillStyle=accent+'50';X.fillRect(cx-16,cy-30,10,3);X.fillRect(cx-16,cy-25,14,2);break;
+case'webapps':
+X.fillStyle='#2a2040';X.fillRect(cx-30,cy-32,26,16);
+X.strokeStyle=accent;X.lineWidth=1;X.strokeRect(cx-30,cy-32,26,16);
+for(let i=0;i<4;i++){X.fillStyle=['#ff6b6b','#4ecdc4','#45b7d1','#f9ca24'][i]+'80';X.fillRect(cx-28+i*6,cy-30,4,4)}break;
+case'marketplace':
+X.fillStyle='#2a2040';X.fillRect(cx-28,cy-32,24,16);
+X.strokeStyle=accent;X.lineWidth=1;
+for(let r=0;r<2;r++)for(let c=0;c<3;c++){X.strokeRect(cx-26+c*8,cy-30+r*7,6,5)}break;
+case'content':
+X.fillStyle='#2a2040';X.fillRect(cx-28,cy-32,24,16);
+X.strokeStyle=accent;X.lineWidth=1;X.strokeRect(cx-28,cy-32,24,16);
+X.fillStyle=accent+'50';for(let i=0;i<5;i++)X.fillRect(cx-26,cy-30+i*3,18-i*3,1);break;
+case'packages':
+X.fillStyle='#2a2040';X.fillRect(cx-24,cy-32,20,16);
+X.strokeStyle=accent;X.lineWidth=1;
+X.strokeRect(cx-22,cy-30,8,5);X.strokeRect(cx-12,cy-30,8,5);
+X.strokeRect(cx-22,cy-23,8,5);X.strokeRect(cx-12,cy-23,8,5);break;
+case'retainer':
+X.fillStyle='#2a2040';X.fillRect(cx-26,cy-32,22,16);
+X.strokeStyle=accent;X.lineWidth=1;X.strokeRect(cx-26,cy-32,22,16);
+X.fillStyle=accent+'40';X.fillRect(cx-24,cy-28,18,8);break;
+case'command':
+X.fillStyle='#2a2040';X.fillRect(cx-34,cy-36,30,22);
+X.strokeStyle=accent;X.lineWidth=1;X.strokeRect(cx-34,cy-36,30,22);
+X.fillStyle='#0f0f20';X.fillRect(cx-32,cy-34,12,8);X.fillRect(cx-18,cy-34,12,8);
+X.fillStyle=accent+'50';X.fillRect(cx-30,cy-32,8,4);X.fillRect(cx-16,cy-32,8,4);break;
+case'accounts':
+X.fillStyle='#2a2040';X.fillRect(cx-30,cy-34,26,18);
+X.strokeStyle=accent;X.lineWidth=1;X.strokeRect(cx-30,cy-34,26,18);
+for(let i=0;i<6;i++){X.fillStyle=['#e17055','#00b894','#fdcb6e','#6c5ce7','#74b9ff','#55efc4'][i]+'60';
+X.fillRect(cx-28+i*4,cy-30,3,10)}break;
+case'growth':
+X.fillStyle='#2a2040';X.fillRect(cx-26,cy-34,22,18);
+X.strokeStyle=accent;X.lineWidth=1;X.strokeRect(cx-26,cy-34,22,18);
+X.beginPath();X.moveTo(cx-22,cy-18);X.lineTo(cx-14,cy-26);X.lineTo(cx-6,cy-20);X.lineTo(cx+2,cy-28);X.strokeStyle=accent;X.stroke();break;
+}X.restore()}
+
+function draw(){
+X.fillStyle='#060610';X.fillRect(0,0,W,H);
+if(!gameStarted)return;
+X.save();X.translate(-camX,-camY);
+
+const floor=FLOORS[currentFloor];
+
+for(let y=0;y<mapH;y++)for(let x=0;x<mapW;x++){
+const px=x*T,py=y*T,t=map[y][x];
+if(t===1){X.fillStyle='#1e1e3a';X.fillRect(px,py,T,T);X.fillStyle='#2a2a50';X.fillRect(px,py,T,4)}
+else if(t===2){X.fillStyle='#0a0a18';X.fillRect(px,py,T,T);X.fillStyle='#3a3a60';X.fillRect(px+T*0.35,py,T*0.3,T)}
+else if(t===3){X.fillStyle='#0a0a18';X.fillRect(px,py,T,T);X.fillStyle='#f39c1220';X.fillRect(px+2,py+2,T-4,T-4);X.strokeStyle='#f39c1280';X.lineWidth=1;X.strokeRect(px+2,py+2,T-4,T-4)}
+else{
+const room=getRoomAt(px+T/2,py+T/2);
+X.fillStyle=(y===7||y===8)?'#0a0a16':(room?room.floor:'#0e0e22');
+X.fillRect(px,py,T,T);
+X.strokeStyle='rgba(255,255,255,0.015)';X.strokeRect(px,py,T,T)}}
+
+// Room name plates on walls
+X.font='bold 13px Segoe UI, sans-serif';X.textAlign='center';X.textBaseline='middle';
+const topRooms=floor.rooms.slice(0,3);
+const botRooms=floor.rooms.slice(3);
+const topCx=[3*T,9*T,15*T];
+const botCx=[3*T,9*T,15*T,20.5*T];
+topRooms.forEach((r,i)=>{
+X.fillStyle=r.accent+'90';
+X.fillText(r.name,topCx[i],0.5*T)});
+botRooms.forEach((r,i)=>{
+X.fillStyle=r.accent+'90';
+X.fillText(r.name,botCx[i],(mapH-0.5)*T)});
+
+// Hallway floor accent line
+X.fillStyle=floor.accent+'15';
+X.fillRect(T,7.5*T-T*0.15,(mapW-2)*T,T*0.3);
+X.fillStyle='rgba(255,255,255,0.04)';
+X.font='11px Segoe UI, sans-serif';
+X.fillText('\u2014 HALLWAY \u2014',mapW/2*T,7.5*T);
+
+// Elevator label
+X.fillStyle='#f39c12';X.font='bold 10px Segoe UI, sans-serif';
+X.fillText('ELEVATOR',1.5*T,7.5*T);
+
+// Furniture + agents
+agentPositions.forEach(ap=>{
+const a=ap.room.agent;
+drawFurniture(ap.cx,ap.cy,ap.room.id,a.accent);
+
+// Desk
+X.fillStyle='#1a1a30';
+X.fillRect(ap.cx-18,ap.cy-8,36,16);
+X.strokeStyle=a.color+'50';X.lineWidth=1;
+X.strokeRect(ap.cx-18,ap.cy-8,36,16);
+
+// Agent body
+X.beginPath();X.arc(ap.cx,ap.cy-20,12,0,Math.PI*2);
+X.fillStyle=a.color+'25';X.fill();
+X.strokeStyle=a.color;X.lineWidth=2;X.stroke();
+
+// Agent icon
+X.fillStyle=a.color;X.font='bold 11px Segoe UI, sans-serif';
+X.textAlign='center';X.textBaseline='middle';
+X.fillText(a.icon,ap.cx,ap.cy-20);
+
+// Status dot
+X.beginPath();X.arc(ap.cx+10,ap.cy-28,3.5,0,Math.PI*2);
+X.fillStyle='#10b981';X.fill();
+
+// Name under desk
+X.fillStyle=a.color+'aa';X.font='bold 10px Segoe UI, sans-serif';
+X.textBaseline='top';X.fillText(a.name,ap.cx,ap.cy+12)});
 
 // Player
-let player = { x: 10 * TILE + TILE / 2, y: 8 * TILE + TILE / 2, r: 10, speed: 2.5, sprint: false };
-let keys = {};
-let paused = false;
-let gameStarted = false;
-let showPanel = false;
-let panelAgent = null;
-let nearElevator = false;
-let showMinimap = false;
+X.beginPath();X.arc(player.x+2,player.y+2,player.r,0,Math.PI*2);
+X.fillStyle='rgba(0,0,0,0.3)';X.fill();
+X.beginPath();X.arc(player.x,player.y,player.r,0,Math.PI*2);
+X.fillStyle='#6C5CE7';X.fill();
+X.strokeStyle='#8b7cf0';X.lineWidth=2;X.stroke();
+X.beginPath();X.arc(player.x-2,player.y-2,3,0,Math.PI*2);
+X.fillStyle='rgba(255,255,255,0.35)';X.fill();
+X.fillStyle='#fff';X.font='bold 9px Segoe UI, sans-serif';
+X.textAlign='center';X.textBaseline='bottom';
+X.fillText('ASJID',player.x,player.y-player.r-5);
 
-// Agent positions (center of each room)
-function getAgentPositions(fi) {
-  const f = FLOORS[fi];
-  const pos = [];
-  // Top rooms: row 1-6, cols split into 3 zones
-  const topZones = [{x1:1,x2:4},{x1:6,x2:10},{x1:12,x2:16}];
-  // Bottom rooms: row 9-14
-  const botZones = [{x1:1,x2:4},{x1:6,x2:10},{x1:12,x2:16},{x1:18,x2:20}];
-  const topRooms = f.rooms.filter((_, i) => i < 3);
-  const botRooms = f.rooms.filter((_, i) => i >= 3);
-  
-  topRooms.forEach((r, i) => {
-    if (i < topZones.length) {
-      const z = topZones[i];
-      pos.push({ room: r, cx: ((z.x1 + z.x2) / 2) * TILE, cy: 3.5 * TILE, zone: z });
-    }
-  });
-  botRooms.forEach((r, i) => {
-    const z = botZones[i] || botZones[botZones.length - 1];
-    pos.push({ room: r, cx: ((z.x1 + z.x2) / 2) * TILE, cy: 11 * TILE, zone: z });
-  });
-  return pos;
-}
+X.restore()}
 
-let agentPositions = getAgentPositions(0);
+function loop(){update();draw();requestAnimationFrame(loop)}
 
-// Input
-addEventListener('keydown', e => {
-  keys[e.key.toLowerCase()] = true;
-  if (e.key.toLowerCase() === 'shift') player.sprint = true;
-  if (e.key.toLowerCase() === 'e' && nearElevator) {
-    currentFloor = (currentFloor + 1) % FLOORS.length;
-    map = buildMap(currentFloor);
-    agentPositions = getAgentPositions(currentFloor);
-    player.x = 3 * TILE; player.y = 7.5 * TILE;
-    showHint('Now on ' + FLOORS[currentFloor].name);
-  }
-  if (e.key.toLowerCase() === 'f') { showMinimap = !showMinimap; document.getElementById('minimap').classList.toggle('vis', showMinimap); }
-  if (e.key === 'Escape') { paused = !paused; }
-});
-addEventListener('keyup', e => {
-  keys[e.key.toLowerCase()] = false;
-  if (e.key.toLowerCase() === 'shift') player.sprint = false;
-});
-
-let hintTimer = null;
-function showHint(text) {
-  const el = document.getElementById('hint');
-  el.textContent = text;
-  el.classList.add('vis');
-  clearTimeout(hintTimer);
-  hintTimer = setTimeout(() => el.classList.remove('vis'), 2000);
-}
-
-// Collision
-function isWalkable(px, py) {
-  const tileX = Math.floor(px / TILE);
-  const tileY = Math.floor(py / TILE);
-  if (tileX < 0 || tileX >= MAP_W || tileY < 0 || tileY >= MAP_H) return false;
-  return map[tileY][tileX] !== 1;
-}
-
-function canMove(nx, ny) {
-  const r = player.r * 0.7;
-  return isWalkable(nx - r, ny - r) && isWalkable(nx + r, ny - r) && isWalkable(nx - r, ny + r) && isWalkable(nx + r, ny + r);
-}
-
-// Camera
-let camX = 0, camY = 0;
-
-function update() {
-  if (!gameStarted || paused) return;
-  const spd = player.sprint ? player.speed * 1.7 : player.speed;
-  let dx = 0, dy = 0;
-  if (keys['w'] || keys['arrowup']) dy -= spd;
-  if (keys['s'] || keys['arrowdown']) dy += spd;
-  if (keys['a'] || keys['arrowleft']) dx -= spd;
-  if (keys['d'] || keys['arrowright']) dx += spd;
-  if (dx !== 0 && dy !== 0) { dx *= 0.707; dy *= 0.707; }
-  if (dx !== 0 && canMove(player.x + dx, player.y)) player.x += dx;
-  if (dy !== 0 && canMove(player.x, player.y + dy)) player.y += dy;
-  
-  // Camera smooth follow
-  camX += (player.x - W / 2 - camX) * 0.08;
-  camY += (player.y - H / 2 - camY) * 0.08;
-  
-  // Check elevator proximity
-  const eTileX = Math.floor(player.x / TILE), eTileY = Math.floor(player.y / TILE);
-  nearElevator = (eTileX >= 2 && eTileX <= 3 && eTileY >= 7 && eTileY <= 8);
-  document.getElementById('elev').classList.toggle('vis', nearElevator);
-  
-  // Check agent proximity
-  let nearest = null, minDist = 80;
-  agentPositions.forEach(ap => {
-    const d = Math.hypot(player.x - ap.cx, player.y - ap.cy);
-    if (d < minDist) { minDist = d; nearest = ap; }
-  });
-  
-  if (nearest && !nearElevator) {
-    if (!showPanel || panelAgent !== nearest.room) {
-      panelAgent = nearest.room;
-      showPanel = true;
-      const a = nearest.room.agent;
-      document.getElementById('av').textContent = a.icon;
-      document.getElementById('av').style.cssText = `background:${a.color}20;color:${a.color}`;
-      document.getElementById('nm').textContent = a.name;
-      document.getElementById('rl').textContent = a.role + ' — ' + nearest.room.name;
-      document.getElementById('st').textContent = a.status;
-      document.getElementById('lg').innerHTML = a.log.map(l => '<div>• ' + l + '</div>').join('');
-      document.getElementById('panel').classList.add('vis');
-    }
-  } else {
-    if (showPanel) { showPanel = false; document.getElementById('panel').classList.remove('vis'); }
-  }
-}
-
-function draw() {
-  X.fillStyle = '#060610';
-  X.fillRect(0, 0, W, H);
-  if (!gameStarted) return;
-  
-  X.save();
-  X.translate(-camX, -camY);
-  
-  // Draw map
-  for (let y = 0; y < MAP_H; y++) {
-    for (let x = 0; x < MAP_W; x++) {
-      const px = x * TILE, py = y * TILE;
-      const t = map[y][x];
-      if (t === 1) {
-        // Wall
-        X.fillStyle = COLORS.wall;
-        X.fillRect(px, py, TILE, TILE);
-        X.fillStyle = COLORS.wallTop;
-        X.fillRect(px, py, TILE, 4);
-      } else if (t === 2) {
-        // Door
-        X.fillStyle = COLORS.floor;
-        X.fillRect(px, py, TILE, TILE);
-        X.fillStyle = COLORS.door;
-        X.fillRect(px + 8, py, TILE - 16, TILE);
-      } else if (t === 3) {
-        // Elevator
-        X.fillStyle = COLORS.floor;
-        X.fillRect(px, py, TILE, TILE);
-        X.fillStyle = '#f39c1230';
-        X.fillRect(px + 2, py + 2, TILE - 4, TILE - 4);
-        X.strokeStyle = '#f39c12';
-        X.lineWidth = 1;
-        X.strokeRect(px + 2, py + 2, TILE - 4, TILE - 4);
-      } else {
-        // Floor
-        X.fillStyle = (y === 7 || y === 8) ? COLORS.hallway : COLORS.floor;
-        X.fillRect(px, py, TILE, TILE);
-        // Grid lines
-        X.strokeStyle = 'rgba(255,255,255,0.02)';
-        X.strokeRect(px, py, TILE, TILE);
-      }
-    }
-  }
-  
-  // Draw room labels
-  const floor = FLOORS[currentFloor];
-  X.font = 'bold 11px Segoe UI, sans-serif';
-  X.textAlign = 'center';
-  X.textBaseline = 'top';
-  
-  const labelPositions = [
-    {x:2.5*TILE, y:1*TILE}, {x:8*TILE, y:1*TILE}, {x:14*TILE, y:1*TILE},
-    {x:2.5*TILE, y:9.5*TILE}, {x:8*TILE, y:9.5*TILE}, {x:14*TILE, y:9.5*TILE}
-  ];
-  floor.rooms.forEach((r, i) => {
-    if (i >= labelPositions.length) return;
-    const lp = labelPositions[i];
-    X.fillStyle = 'rgba(255,255,255,0.15)';
-    X.fillText(r.name, lp.x, lp.y);
-  });
-  
-  // Hallway label
-  X.fillStyle = 'rgba(255,255,255,0.08)';
-  X.fillText('— HALLWAY —', 10 * TILE, 7.2 * TILE);
-  
-  // Elevator label
-  X.fillStyle = '#f39c12';
-  X.font = 'bold 10px Segoe UI, sans-serif';
-  X.fillText('ELEVATOR', 2.5 * TILE, 7.2 * TILE);
-  
-  // Draw agents
-  agentPositions.forEach(ap => {
-    const a = ap.room.agent;
-    // Desk
-    X.fillStyle = '#1a1a35';
-    X.fillRect(ap.cx - 16, ap.cy - 10, 32, 20);
-    X.strokeStyle = a.color + '40';
-    X.lineWidth = 1;
-    X.strokeRect(ap.cx - 16, ap.cy - 10, 32, 20);
-    // Agent circle
-    X.beginPath();
-    X.arc(ap.cx, ap.cy - 18, 10, 0, Math.PI * 2);
-    X.fillStyle = a.color + '30';
-    X.fill();
-    X.strokeStyle = a.color;
-    X.lineWidth = 1.5;
-    X.stroke();
-    // Icon
-    X.fillStyle = a.color;
-    X.font = 'bold 10px Segoe UI, sans-serif';
-    X.textAlign = 'center';
-    X.textBaseline = 'middle';
-    X.fillText(a.icon, ap.cx, ap.cy - 18);
-    // Status glow
-    X.beginPath();
-    X.arc(ap.cx + 14, ap.cy - 22, 3, 0, Math.PI * 2);
-    X.fillStyle = '#10b981';
-    X.fill();
-  });
-  
-  // Draw player
-  // Body shadow
-  X.beginPath();
-  X.arc(player.x + 2, player.y + 2, player.r, 0, Math.PI * 2);
-  X.fillStyle = 'rgba(0,0,0,0.3)';
-  X.fill();
-  // Body
-  X.beginPath();
-  X.arc(player.x, player.y, player.r, 0, Math.PI * 2);
-  X.fillStyle = COLORS.player;
-  X.fill();
-  X.strokeStyle = '#8b7cf0';
-  X.lineWidth = 2;
-  X.stroke();
-  // Inner highlight
-  X.beginPath();
-  X.arc(player.x - 2, player.y - 2, 3, 0, Math.PI * 2);
-  X.fillStyle = 'rgba(255,255,255,0.3)';
-  X.fill();
-  // Label
-  X.fillStyle = '#fff';
-  X.font = 'bold 9px Segoe UI, sans-serif';
-  X.textAlign = 'center';
-  X.textBaseline = 'bottom';
-  X.fillText('ASJID', player.x, player.y - player.r - 4);
-  
-  // Interaction prompt
-  let nearest = null, minDist = 80;
-  agentPositions.forEach(ap => {
-    const d = Math.hypot(player.x - ap.cx, player.y - ap.cy);
-    if (d < minDist) { minDist = d; nearest = ap; }
-  });
-  if (nearest && !nearElevator) {
-    X.fillStyle = 'rgba(108,92,231,0.8)';
-    X.font = '10px Segoe UI, sans-serif';
-    X.textBaseline = 'top';
-    X.fillText(nearest.room.agent.name, nearest.cx, nearest.cy + 16);
-  }
-  
-  X.restore();
-  
-  // HUD
-  document.getElementById('fl').textContent = FLOORS[currentFloor].name;
-  document.getElementById('pos').textContent = `${Math.floor(player.x / TILE)}, ${Math.floor(player.y / TILE)}`;
-}
-
-// Minimap
-function drawMinimap() {
-  if (!showMinimap) return;
-  const mc = document.getElementById('minimap').getContext('2d');
-  mc.fillStyle = '#0a0a1a';
-  mc.fillRect(0, 0, 180, 140);
-  const sx = 180 / MAP_W, sy = 140 / MAP_H;
-  for (let y = 0; y < MAP_H; y++) {
-    for (let x = 0; x < MAP_W; x++) {
-      const t = map[y][x];
-      if (t === 1) mc.fillStyle = '#2a2a50';
-      else if (t === 2) mc.fillStyle = '#3a3a60';
-      else if (t === 3) mc.fillStyle = '#f39c1240';
-      else mc.fillStyle = '#0e0e22';
-      mc.fillRect(x * sx, y * sy, sx + .5, sy + .5);
-    }
-  }
-  // Player on minimap
-  mc.fillStyle = '#6C5CE7';
-  mc.beginPath();
-  mc.arc(player.x / TILE * sx, player.y / TILE * sy, 3, 0, Math.PI * 2);
-  mc.fill();
-}
-
-function loop() {
-  update();
-  draw();
-  drawMinimap();
-  requestAnimationFrame(loop);
-}
-
-document.getElementById('enterBtn').onclick = () => {
-  document.getElementById('blocker').classList.add('hidden');
-  document.getElementById('hud').classList.add('vis');
-  gameStarted = true;
-  showHint('WASD to move, E for elevator');
-};
-
+document.getElementById('enterBtn').onclick=()=>{
+document.getElementById('blocker').classList.add('hidden');
+document.getElementById('hud').classList.add('vis');
+gameStarted=true;
+map=buildMap(currentFloor);agentPositions=getAgentPositions();
+player.x=12*T;player.y=7.5*T;
+showHint('WASD to move, E for elevator')};
 loop();
 </script>
 </body>
